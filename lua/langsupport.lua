@@ -32,7 +32,7 @@ M.servers = {
     "marksman",
     "pyright",
     "sqlls",
-    -- "sumneko_lua",
+    "sumneko_lua",
     "tsserver",
     "yamlls"
 }
