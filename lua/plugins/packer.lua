@@ -33,10 +33,10 @@ require("packer").startup({
         use { "lukas-reineke/indent-blankline.nvim", config=setup("d", "indent_blankline")  }
         use { "numToStr/Comment.nvim", config=setup("d", "Comment") }
         use { "akinsho/bufferline.nvim", config=setup("c", "bufferline") }
-        use { "kyazdani42/nvim-tree.lua", config=setup("c", "nvim_tree") }
         use { "nvim-treesitter/nvim-treesitter", config=setup("c", "treesitter") }
         use { "nvim-telescope/telescope.nvim", config=setup("c", "telescope") }
         use { "nvim-telescope/telescope-fzf-native.nvim", run="make" }
+        use { "nvim-telescope/telescope-file-browser.nvim" }
         use { "ziontee113/icon-picker.nvim", config=setup("c", "icon_picker") }
 
 

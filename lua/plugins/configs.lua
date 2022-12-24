@@ -121,68 +121,6 @@ M.bufferline = function()
 end
 
 
-M.nvim_tree = function()
-    local nvim_tree = require("nvim-tree")
-
-    nvim_tree.setup {
-        auto_reload_on_write = true,
-        renderer = {
-            indent_markers = {
-                enable = true,
-                icons = {
-                    corner = "└",
-                    edge = "│",
-                    item = "│",
-                    bottom = "─",
-                    none = " ",
-                },
-            },
-            icons = {
-                webdev_colors = true,
-                git_placement = "after",
-                padding = " ",
-                symlink_arrow = " ➛ ",
-                show = {
-                    file = true,
-                    folder = true,
-                    folder_arrow = false,
-                    git = true,
-                },
-                glyphs = {
-                    default = "",
-                    symlink = "",
-                    bookmark = "",
-                    folder = {
-                        arrow_closed = "",
-                        arrow_open = "",
-                        default = "",
-                        open = "",
-                        empty = "",
-                        empty_open = "",
-                        symlink = "",
-                        symlink_open = "",
-                    },
-                    git = {
-                        unstaged = "U",
-                        staged = "A",
-                        unmerged = "M",
-                        renamed = "R",
-                        untracked = "U",
-                        deleted = "D",
-                        ignored = "",
-                    },
-                }
-            },
-        },
-        actions = {
-            open_file = {
-                quit_on_open = true
-            }
-        },
-    }
-end
-
-
 M.treesitter = function()
     local nvim_treesitter = require("nvim-treesitter.configs")
 
@@ -206,10 +144,15 @@ M.telescope = function()
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case",
+        },
+        extensions = {
+            theme = "ivy",
+            hijack_netrw = true
         }
-    } 
+    }
 
     telescope.load_extension("fzf")
+    telescope.load_extension("file_browser")
 end
 
 
@@ -250,7 +193,7 @@ M.lspconfig = function()
             prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
             suffix = ''
         }
-    } 
+    }
 end
 
 
