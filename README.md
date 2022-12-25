@@ -30,7 +30,6 @@ and others for some additional functionality :)
 - Not found more yet, but i believe in increasing of pros cuz i have ideas
 
 ### cons
-- Not common file manager: [`telescope-file-browser.nvim`](https://github.com/nvim-telescope/telescope-file-browser.nvim) instead [`nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua) and similar
 - Might be not optimal solutions
 
 
@@ -56,8 +55,6 @@ git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ### #TODO
 - Add relative links on sections of README.md
 - Add keymaps, full plugin list and showcases here
-- Add tabline
-- Add plugin for managing /#TODO's and /#FIXME's
 - Add centralised lua interface for configuring options, mappings and plugins
 - Add lazy loading where possible
 - Make an interface more aesthetically😳🛐🛐🛐
@@ -65,7 +62,4 @@ git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 
 ### #FIXME
 - Fix cmp showing of window with function parameters
-- Remove unused parameters from plugins setups
 - Classify options by categories
-- Maybe do refactoring of plugins setups
-- Configure telescope file browser or change to another file browser
