@@ -56,13 +56,16 @@ git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ### #TODO
 - Add relative links on sections of README.md
 - Add keymaps, full plugin list and showcases here
+- Add tabline
 - Add plugin for managing /#TODO's and /#FIXME's
 - Add centralised lua interface for configuring options, mappings and plugins
 - Add lazy loading where possible
-- Make an interface more aesthetically😳🛐🛐🛐 
+- Make an interface more aesthetically😳🛐🛐🛐
 - Maybe add .sh that will install neovim😳 & packer😳 if haven't 🛐
 
 ### #FIXME
+- Fix cmp showing of window with function parameters
 - Remove unused parameters from plugins setups
 - Classify options by categories
 - Maybe do refactoring of plugins setups
+- Configure telescope file browser or change to another file browser
