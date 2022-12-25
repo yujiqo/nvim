@@ -1,8 +1,16 @@
 local M = {}
 
 
-M.tokyonight = function()
-    vim.cmd([[colorscheme tokyonight-storm]])
+M.gruvbox = function()
+    local g = vim.g
+
+    g.gruvbox_material_background = "hard"
+    g.gruvbox_material_foreground = "hard"
+    g.gruvbox_material_disable_italic_comment = 1
+    g.gruvbox_material_enable_bold = 1
+    g.gruvbox_material_better_performance = 1
+
+    vim.cmd[[colorscheme gruvbox-material]]
 end
 
 
@@ -31,10 +39,12 @@ M.dashboard = function()
     }
 
     dashboard.custom_center = {
-        {icon = ' ',
-        desc = ' ',
-        action = 'qa',
-        shortcut = ' '},
+        {
+            icon = " ",
+            desc = " ",
+            action = "qa",
+            shortcut = " "
+        }
     }
 end
 
@@ -52,7 +62,7 @@ M.devicons = function()
     local devicons = require("nvim-web-devicons")
 
     devicons.setup({
-        override = {}
+        override = {} -- TODO: add icons ovverride
     })
 end
 
@@ -65,20 +75,43 @@ M.staline = function()
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
-            left_separator = "",
-            right_separator = "",
+            left_separator = "",
+            right_separator = ""
         },
+
         mode_colors = {
-            n = "#6b6bff",
+            n = "#cccccc",
             i = "#ff6b6b",
-            c = "#FF855D",
-            v = "#ABFF4B",
+            c = "#f8ff60",
+            v = "#6b6bff"
         },
+
         sections = {
-            left = { '- ', '-mode', 'left_sep_double', 'file_name', ' ', 'branch' },
-            mid  = { 'lsp' },
-            right = { 'right_sep_double', '-line_column' },
+            left = { "- ", "-mode", "left_sep_double", " ", "file_name", " ", "lsp", "branch" },
+            mid  = {},
+            right = { "right_sep_double", "-line_column" }
         }
+    })
+end
+
+
+M.todo_comments = function()
+    local todo = require("todo-comments")
+
+    todo.setup({
+        signs = false,
+        keywords = {
+            NOTE = { icon = " ", color = "hint" },
+            TODO = { icon = " ", color = "info" },
+            WARN = { icon = " ", color = "warning" },
+            FIX = { icon = " ", color = "error" }
+        },
+        colors = {
+            hint = { "DiagnosticHint", "#10B981" },
+            info = { "DiagnosticInfo", "#6b6bff" },
+            warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+            error = { "DiagnosticError", "ErrorMsg", "#ff6b6b" }
+        },
     })
 end
 
@@ -88,36 +121,95 @@ M.bufferline = function()
 
     bufferline.setup {
         options = {
-            mode = "tabs",
+            mode = "buffers",
             numbers = "none",
-            indicator = {
-                style = "underline"
-            },
-            buffer_close_icon = '',
-            modified_icon = '●',
-            close_icon = '',
-            left_trunc_marker = '',
-            right_trunc_marker = '',
-            tab_size = 20,
+            modified_icon = "●",
+            tab_size = 18,
             diagnostics = "nvim_lsp",
+            show_buffer_close_icons = false,
+            show_close_icon = false,
+            show_tab_indicators = false,
+            show_duplicate_prefix = true,
+            separator_style = "slant",
+            always_show_bufferline = false,
+
             offsets = {
                 {
                     filetype = "NvimTree",
                     text = "File Explorer",
-                    text_align = "center",
+                    text_align = "center"
                 }
             },
-            show_buffer_close_icons = false,
-            show_close_icon = false,
-            show_tab_indicators = true,
-            show_duplicate_prefix = true,
-            separator_style = "slant",
-            always_show_bufferline = false,
+
             hover = {
                 enabled = false
             }
         }
     }
+end
+
+
+M.nvim_tree = function()
+    local nvim_tree = require("nvim-tree")
+
+    nvim_tree.setup({
+        filters = {
+            dotfiles = false
+        },
+        disable_netrw = true,
+        hijack_netrw = true,
+        open_on_setup = false,
+        ignore_ft_on_setup = { "alpha" },
+        hijack_cursor = true,
+        hijack_unnamed_buffer_when_opening = false,
+        update_cwd = true,
+
+        update_focused_file = {
+            enable = true,
+            update_cwd = false,
+        },
+
+        view = {
+            adaptive_size = true,
+            side = "left",
+            width = 25,
+            hide_root_folder = true,
+        },
+
+        git = {
+            enable = false,
+            ignore = true,
+        },
+
+        filesystem_watchers = {
+            enable = true,
+        },
+
+        actions = {
+            open_file = {
+                quit_on_open = true,
+                resize_window = true
+            },
+        },
+
+        renderer = {
+            highlight_git = false,
+            highlight_opened_files = "none",
+
+            indent_markers = {
+                enable = false,
+            },
+
+            icons = {
+                show = {
+                    file = false,
+                    folder = false,
+                    folder_arrow = true,
+                    git = false
+                }
+            }
+        }
+    })
 end
 
 
@@ -137,22 +229,18 @@ M.telescope = function()
         defaults = {
             prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
-            layout_config = { prompt_position = "top" },
+            layout_config = { prompt_position = "top" }
         },
+
         fzf = {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "smart_case",
-        },
-        extensions = {
-            theme = "ivy",
-            hijack_netrw = true
+            case_mode = "smart_case"
         }
     }
 
     telescope.load_extension("fzf")
-    telescope.load_extension("file_browser")
 end
 
 
@@ -166,34 +254,13 @@ end
 
 
 M.lspconfig = function()
-    local borders = {
-        { "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
-        { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
-    }
-
-    local border = borders[0]
-
     local signs = { Error = "", Warn  = "", Hint  = "", Info  = "", other = "﫠" }
 
     for name, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. name
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
-
-    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with( vim.lsp.handlers.hover, {border = border})
-    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with( vim.lsp.handlers.signature_help, {border = border})
-
-    vim.diagnostic.config {
-        virtual_text = false,
-        underline = {Error=true},
-        float = {
-            border = border,
-            header = { "  Diagnostics", "String" },
-            focusable = false,
-            prefix = function(_, _, _) return "  " , "String" end, -- icons:        ﬌  
-            suffix = ''
-        }
-    }
 end
 
 
@@ -219,7 +286,7 @@ M.lspconfig_w_mason = function()
     mason_lspconfig.setup_handlers {
         function(server)
             lspconfig[server].setup({})
-        end,
+        end
     }
 end
 
@@ -228,25 +295,35 @@ M.cmp = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
-    local source_names = { nvim_lsp = "[LSP]", emoji = "[Emoji]", path = "[Path]", luasnip = "[Snippet]", buffer = "[Buffer]", nvim_lsp_signature_help = "[sig_help]" }
+    local source_names = {
+        nvim_lsp = "[LSP]",
+        path = "[Path]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]"
+    }
+
     local kind_icons = {
-        Text = ' ', Method = ' ', Function = ' ', Constructor = ' ', Field = ' ', Variable = ' ', Class = ' ', Interface = ' ',
-        Module = ' ', Property = ' ', Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ', Color = ' ', File = ' ',
-        Reference = ' ', Folder = ' ', EnumMember = ' ', Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' ',
+        Text = " ", Method = ' ', Function = ' ', Constructor = ' ', Field = ' ',
+        Variable = ' ', Class = ' ', Interface = ' ', Module = ' ', Property = ' ',
+        Unit = ' ', Value = ' ', Enum = ' ', Keyword = ' ', Snippet = ' ',
+        Color = ' ', File = ' ', Reference = ' ', Folder = ' ', EnumMember = ' ',
+        Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' '
     }
 
     cmp.setup {
         completion = {
             autocomplete = false
         },
+
         formatting = {
-            fields = { 'kind', 'abbr', 'menu' },
+            fields = { 'abbr', 'kind' },
             format = function(entry, item)
                 item.kind = kind_icons[item.kind] or " "
                 item.menu = source_names[entry.source.name] or " "
                 return item
             end
         },
+
         window = {
             completion = cmp.config.window.bordered(),
             documentation = cmp.config.window.bordered()
@@ -261,8 +338,8 @@ M.cmp = function()
             ["<S-Tab>"] = cmp.mapping.select_prev_item(),
             ["<C-b>"] = cmp.mapping.scroll_docs(-1),
             ["<C-f>"] = cmp.mapping.scroll_docs(1),
-            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ["<CR>"] = cmp.mapping.confirm({ select = true })
         },
 
         sources = cmp.config.sources {
@@ -270,13 +347,21 @@ M.cmp = function()
             { name = "nvim_lsp" },
             { name = "buffer" },
             { name = "luasnip" },
-            { name = "emoji" }
-        },
-
-        experimental = { ghost_text = true }
+        }
     }
 
-    cmp.setup.cmdline(':', { mapping=cmp.mapping.preset.cmdline(), sources = {{name="cmdline", keyword_length=3}} })
+    cmp.setup.cmdline(
+        ":",
+        {
+            mapping=cmp.mapping.preset.cmdline(),
+            sources = {
+                {
+                    name="cmdline",
+                    keyword_length=3
+                }
+            }
+        }
+    )
 end
 
 
