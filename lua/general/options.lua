@@ -2,16 +2,6 @@ local opt = vim.opt
 local g = vim.g
 
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
--- g.gruvbox_material_background = "hard"
--- g.gruvbox_material_foreground = "hard"
--- g.gruvbox_material_disable_italic_comment = 1
--- g.gruvbox_material_enable_bold = 1
--- g.gruvbox_material_better_performance = 1
--- vim.cmd[[colorscheme gruvbox-material]]
-
 opt.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
 opt.laststatus = 3
 opt.showtabline = 2

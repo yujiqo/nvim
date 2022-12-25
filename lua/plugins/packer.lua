@@ -16,8 +16,7 @@ require("packer").startup({
 
 
         --- appearance ---
-        -- use { "sainnhe/gruvbox-material" }
-        use { "folke/tokyonight.nvim", config=setup("c", "tokyonight") }
+        use { "sainnhe/gruvbox-material", config=setup("c", "gruvbox") }
         use { "glepnir/dashboard-nvim", config=setup("c", "dashboard") }
         use { "xiyaowong/nvim-transparent", config=setup("c", "transparent") }
         use { "kyazdani42/nvim-web-devicons", config=setup("c", "devicons") }
@@ -32,12 +31,12 @@ require("packer").startup({
         use { "norcalli/nvim-colorizer.lua", config=setup("d", "colorizer") }
         use { "lukas-reineke/indent-blankline.nvim", config=setup("d", "indent_blankline")  }
         use { "numToStr/Comment.nvim", config=setup("d", "Comment") }
+        use { "folke/todo-comments.nvim", config=setup("c", "todo_comments") }
         use { "akinsho/bufferline.nvim", config=setup("c", "bufferline") }
+        use { "nvim-tree/nvim-tree.lua", config=setup("c", "nvim_tree") }
         use { "nvim-treesitter/nvim-treesitter", config=setup("c", "treesitter") }
         use { "nvim-telescope/telescope.nvim", config=setup("c", "telescope") }
         use { "nvim-telescope/telescope-fzf-native.nvim", run="make" }
-        use { "nvim-telescope/telescope-file-browser.nvim" }
-        use { "ziontee113/icon-picker.nvim", config=setup("c", "icon_picker") }
 
 
         --- lsp & autocmp ---
@@ -49,7 +48,6 @@ require("packer").startup({
         use { "hrsh7th/cmp-path", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-buffer", after={"nvim-cmp"} }
-        use { "hrsh7th/cmp-emoji", after={"nvim-cmp"} }
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
         use { "kevinoid/vim-jsonc" }
     end

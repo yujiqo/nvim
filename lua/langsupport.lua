@@ -17,6 +17,7 @@ M.parsers = {
     "lua",
     "javascript",
     "typescript",
+    "tsx",
     "yaml"
 }
 
