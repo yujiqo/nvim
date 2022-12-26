@@ -61,5 +61,4 @@ git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 - Maybe add .sh that will install neovim😳 & packer😳 if haven't 🛐
 
 ### #FIXME
-- Fix cmp showing of window with function parameters
 - Classify options by categories
