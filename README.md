@@ -12,7 +12,7 @@ Win32Yank as clipboard provider
 There are in this config:
 
 - [`packer.nvim`](https://github.com/wbthomason/packer.nvim) used as plugin manager
-- [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as files/stringsInFiles browser
+- [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as inproject search
 - [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) used as syntax highlighter
 - [`mason.nvim`](https://github.com/williamboman/mason.nvim) used as lsp manager
 - [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) used as completion engine
