@@ -5,32 +5,19 @@ Tested and worked on:
 ```
 Windows 11
 WSL Debian distro
-Windows Terminal, Tabby, Hyper terminal emulators
+Alacritty terminal emulator
 Win32Yank as clipboard provider
 ```
 
 There are in this config:
 
-- [`packer.nvim`](https://github.com/wbthomason/packer.nvim) used as plugin manager
+- [`lazy.nvim`](https://github.com/folke/lazy.nvim) used as plugin manager
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as inproject search
 - [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) used as syntax highlighter
 - [`mason.nvim`](https://github.com/williamboman/mason.nvim) used as lsp manager
 - [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) used as completion engine
 
 and others for some additional functionality :)
-
-
-<br>
-
-
-## Config pros and cons
-### pros
-- Aesthetic appearance ⊙⁠﹏⁠⊙
-- Good extensibility without adding new files for setuping
-- Not found more yet, but i believe in increasing of pros cuz i have ideas
-
-### cons
-- Might be not optimal solutions
 
 
 <br>
@@ -43,8 +30,8 @@ and others for some additional functionality :)
 ```
 git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ```
-- Install [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
-- In nvim run `:PackerSync` and restart
+- Install [`lazy.nvim`](https://github.com/folke/lazy.nvim)
+- In nvim run `:Lazy sync` and restart
 - In nvim run `:checkhealth` and install some requirements from command output window
 
 
@@ -56,8 +43,6 @@ git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 - Add relative links on sections of README.md
 - Add keymaps, full plugin list and showcases here
 - Add centralised lua interface for configuring options, mappings and plugins
-- Add lazy loading where possible
-- Make an interface more aesthetically😳🛐🛐🛐
 - Maybe add .sh that will install neovim😳 & packer😳 if haven't 🛐
 
 ### #FIXME
