@@ -2,15 +2,34 @@ local M = {}
 
 
 M.gruvbox = function()
-    local g = vim.g
+    local gruvbox = require("gruvbox");
 
-    g.gruvbox_material_background = "hard"
-    g.gruvbox_material_foreground = "hard"
-    g.gruvbox_material_disable_italic_comment = 1
-    g.gruvbox_material_enable_bold = 1
-    g.gruvbox_material_better_performance = 1
+    gruvbox.setup {
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = false,
+        strikethrough = false,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = false,
+        overrides = {
+            GruvboxRedSign = { bg = "none" },
+            GruvboxGreenSign = { bg = "none" },
+            GruvboxYellowSign = { bg = "none" },
+            GruvboxBlueSign = { bg = "none" },
+            GruvboxPurpleSign = { bg = "none" },
+            GruvboxAquaSign = { bg = "none" },
+            GruvboxOrangeSign = { bg = "none" }
+        },
+        contrast = "soft",
+        dim_inactive = true,
+        transparent_mode = false,
+    }
 
-    vim.cmd[[colorscheme gruvbox-material]]
+    vim.cmd[[colorscheme gruvbox]]
 end
 
 
@@ -75,12 +94,12 @@ M.staline = function()
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
             branch_symbol = " ",
-            left_separator = "",
-            right_separator = ""
+            left_separator = "",
+            right_separator = ""
         },
 
         mode_colors = {
-            n = "#cccccc",
+            n = "#ff6b6b",
             i = "#ff6b6b",
             c = "#f8ff60",
             v = "#6b6bff"
@@ -92,6 +111,16 @@ M.staline = function()
             right = { "right_sep_double", "-line_column" }
         }
     })
+end
+
+
+M.indent_blankline = function()
+    local indent_blankline = require("indent_blankline");
+
+    indent_blankline.setup {
+        show_current_context = true,
+        show_current_context_start = false,
+    }
 end
 
 
@@ -124,14 +153,19 @@ M.bufferline = function()
             mode = "buffers",
             numbers = "none",
             modified_icon = "●",
-            tab_size = 18,
+            tab_size = 15,
             diagnostics = "nvim_lsp",
+            show_buffer_icons = false,
             show_buffer_close_icons = false,
             show_close_icon = false,
-            show_tab_indicators = false,
+            show_tab_indicators = true,
             show_duplicate_prefix = true,
             separator_style = "slant",
             always_show_bufferline = false,
+
+            indicator = {
+                style = "none"
+            },
 
             offsets = {
                 {
@@ -152,10 +186,11 @@ end
 M.nvim_tree = function()
     local nvim_tree = require("nvim-tree")
 
-    nvim_tree.setup({
+    nvim_tree.setup {
         filters = {
             dotfiles = false
         },
+
         disable_netrw = true,
         hijack_netrw = true,
         open_on_setup = false,
@@ -166,7 +201,7 @@ M.nvim_tree = function()
 
         update_focused_file = {
             enable = true,
-            update_cwd = false,
+            update_cwd = false
         },
 
         view = {
@@ -174,15 +209,16 @@ M.nvim_tree = function()
             side = "left",
             width = 25,
             hide_root_folder = true,
+            signcolumn = "no"
         },
 
         git = {
-            enable = false,
-            ignore = true,
+            enable = true,
+            ignore = false
         },
 
         filesystem_watchers = {
-            enable = true,
+            enable = true
         },
 
         actions = {
@@ -195,21 +231,49 @@ M.nvim_tree = function()
         renderer = {
             highlight_git = false,
             highlight_opened_files = "none",
+            add_trailing = false,
+            group_empty = false,
+            full_name = false,
+            indent_width = 2,
 
             indent_markers = {
-                enable = false,
+                enable = true,
+                inline_arrows = false,
+
+                icons = {
+                    corner = "└",
+                    edge = "│",
+                    item = "│",
+                    bottom = "─",
+                    none = " "
+                }
             },
 
             icons = {
+                git_placement = "after",
+                padding = " ",
+
                 show = {
                     file = false,
-                    folder = false,
-                    folder_arrow = true,
-                    git = false
+                    folder = true,
+                    folder_arrow = false,
+                    git = true
+                },
+
+                glyphs = {
+                    git = {
+                        unstaged = "M",
+                        staged = "A",
+                        unmerged = "",
+                        renamed = "R",
+                        untracked = "U",
+                        deleted = "D",
+                        ignored = ""
+                    }
                 }
             }
         }
-    })
+    }
 end
 
 
@@ -217,7 +281,13 @@ M.treesitter = function()
     local nvim_treesitter = require("nvim-treesitter.configs")
 
     nvim_treesitter.setup {
-        ensure_installed = require("langsupport").parsers
+        ensure_installed = require("langsupport").parsers,
+        auto_install = true,
+
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false
+        },
     }
 end
 
@@ -241,15 +311,7 @@ M.telescope = function()
     }
 
     telescope.load_extension("fzf")
-end
-
-
-M.icon_picker = function()
-    local icon_picker = require("icon-picker")
-
-    icon_picker.setup {
-        disable_legacy_commands = true
-    }
+    telescope.load_extension("file_browser")
 end
 
 
@@ -343,10 +405,15 @@ M.cmp = function()
         },
 
         sources = cmp.config.sources {
-            { name = "path" },
             { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" },
+            { name = "path" },
             { name = "buffer" },
-            { name = "luasnip" },
+            { name = "luasnip" }
+        },
+
+        experimental = {
+            ghost_text = true
         }
     }
 

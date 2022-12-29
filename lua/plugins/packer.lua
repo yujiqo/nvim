@@ -6,6 +6,7 @@ local setup = function(setup_type, setup_name)
     end
 end
 
+
 require("packer").startup({
     function(use)
         use { "wbthomason/packer.nvim" }
@@ -16,7 +17,7 @@ require("packer").startup({
 
 
         --- appearance ---
-        use { "sainnhe/gruvbox-material", config=setup("c", "gruvbox") }
+        use { "ellisonleao/gruvbox.nvim", config=setup("c", "gruvbox") }
         use { "glepnir/dashboard-nvim", config=setup("c", "dashboard") }
         use { "xiyaowong/nvim-transparent", config=setup("c", "transparent") }
         use { "kyazdani42/nvim-web-devicons", config=setup("c", "devicons") }
@@ -29,14 +30,15 @@ require("packer").startup({
         use { "cappyzawa/trim.nvim", config=setup("d", "trim") }
         use { "windwp/nvim-autopairs", config=setup("d", "nvim-autopairs") }
         use { "norcalli/nvim-colorizer.lua", config=setup("d", "colorizer") }
-        use { "lukas-reineke/indent-blankline.nvim", config=setup("d", "indent_blankline")  }
         use { "numToStr/Comment.nvim", config=setup("d", "Comment") }
+        use { "lukas-reineke/indent-blankline.nvim", config=setup("c", "indent_blankline")  }
         use { "folke/todo-comments.nvim", config=setup("c", "todo_comments") }
         use { "akinsho/bufferline.nvim", config=setup("c", "bufferline") }
         use { "nvim-tree/nvim-tree.lua", config=setup("c", "nvim_tree") }
         use { "nvim-treesitter/nvim-treesitter", config=setup("c", "treesitter") }
         use { "nvim-telescope/telescope.nvim", config=setup("c", "telescope") }
         use { "nvim-telescope/telescope-fzf-native.nvim", run="make" }
+        use { "nvim-telescope/telescope-file-browser.nvim" }
 
 
         --- lsp & autocmp ---
@@ -48,7 +50,9 @@ require("packer").startup({
         use { "hrsh7th/cmp-path", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-buffer", after={"nvim-cmp"} }
+        use { "hrsh7th/cmp-nvim-lsp-signature-help", after={"nvim-cmp"} }
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
         use { "kevinoid/vim-jsonc" }
+        use { "neoclide/vim-jsx-improve" }
     end
 })
