@@ -1,7 +1,7 @@
-local M = {}
+local configs = {}
 
 
-M.gruvbox = function()
+configs.gruvbox = function()
     local gruvbox = require("gruvbox");
 
     gruvbox.setup {
@@ -33,7 +33,7 @@ M.gruvbox = function()
 end
 
 
-M.dashboard = function()
+configs.dashboard = function()
     local dashboard = require("dashboard")
 
     dashboard.custom_header = {
@@ -68,7 +68,7 @@ M.dashboard = function()
 end
 
 
-M.transparent = function()
+configs.transparent = function()
     local transparent = require("transparent")
 
     transparent.setup {
@@ -77,7 +77,7 @@ M.transparent = function()
 end
 
 
-M.devicons = function()
+configs.devicons = function()
     local devicons = require("nvim-web-devicons")
 
     devicons.setup({
@@ -86,7 +86,7 @@ M.devicons = function()
 end
 
 
-M.staline = function()
+configs.staline = function()
     local staline = require("staline")
 
     staline.setup({
@@ -114,7 +114,7 @@ M.staline = function()
 end
 
 
-M.indent_blankline = function()
+configs.indent_blankline = function()
     local indent_blankline = require("indent_blankline");
 
     indent_blankline.setup {
@@ -124,7 +124,7 @@ M.indent_blankline = function()
 end
 
 
-M.todo_comments = function()
+configs.todo_comments = function()
     local todo = require("todo-comments")
 
     todo.setup({
@@ -145,7 +145,7 @@ M.todo_comments = function()
 end
 
 
-M.bufferline = function()
+configs.bufferline = function()
     local bufferline = require("bufferline")
 
     bufferline.setup {
@@ -183,7 +183,7 @@ M.bufferline = function()
 end
 
 
-M.nvim_tree = function()
+configs.nvim_tree = function()
     local nvim_tree = require("nvim-tree")
 
     nvim_tree.setup {
@@ -277,7 +277,7 @@ M.nvim_tree = function()
 end
 
 
-M.treesitter = function()
+configs.treesitter = function()
     local nvim_treesitter = require("nvim-treesitter.configs")
 
     nvim_treesitter.setup {
@@ -292,7 +292,7 @@ M.treesitter = function()
 end
 
 
-M.telescope = function()
+configs.telescope = function()
     local telescope = require("telescope")
 
     telescope.setup {
@@ -315,7 +315,20 @@ M.telescope = function()
 end
 
 
-M.lspconfig = function()
+configs.lspconfig = function()
+    vim.diagnostic.config({
+        virtual_text = {
+            prefix = ""
+        },
+        underline = {Error=true},
+        float = {
+            header = "",
+            focusable = false,
+            prefix = function(_, _, _) return "" , "String" end,
+            suffix = ""
+        }
+    })
+
     local signs = { Error = "", Warn  = "", Hint  = "", Info  = "", other = "﫠" }
 
     for name, icon in pairs(signs) do
@@ -326,7 +339,7 @@ M.lspconfig = function()
 end
 
 
-M.lspconfig_w_mason = function()
+configs.lspconfig_w_mason = function()
     require("neodev").setup()
 
     local lspconfig = require("lspconfig")
@@ -353,7 +366,7 @@ M.lspconfig_w_mason = function()
 end
 
 
-M.cmp = function()
+configs.cmp = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
@@ -432,4 +445,4 @@ M.cmp = function()
 end
 
 
-return M
+return configs
