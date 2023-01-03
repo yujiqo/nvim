@@ -7,8 +7,6 @@ It's a really simple config that's can be used for small and not small developme
 
 ![](https://user-images.githubusercontent.com/92727678/209987617-827c995f-f68a-4418-a79a-e7aca5c24e2e.png)
 
-![](https://user-images.githubusercontent.com/92727678/209988040-3496f560-a30a-4ef5-8f61-c096d5797a7a.png)
-
 ### Main plugins
 
 - [`lazy.nvim`](https://github.com/folke/lazy.nvim) used as plugin manager
