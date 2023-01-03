@@ -2,19 +2,47 @@ local opt = vim.opt
 local g = vim.g
 
 
-opt.fillchars:append({eob=' ', fold=' ', foldopen="", foldsep=" ", foldclose=""})
-opt.laststatus = 3
-opt.showtabline = 2
+--- disable netrw ---
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+
+
+--- backup ---
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
+
+
+--- highlights ---
+opt.termguicolors = true
+opt.winblend = 0
+opt.wildoptions = "pum"
+opt.pumblend = 5
+opt.background = "dark"
+
+
+--- clipboard ---
+opt.clipboard:prepend { "unnamed", "unnamedplus" } -- windows
+-- opt.clipboard:append { "unnamedplus" } -- unix
+
+
+--- statusline ---
+opt.laststatus = 2
 opt.showmode = false
+
+
+--- file ---
 opt.number = true
-opt.relativenumber = true
 opt.encoding = "utf-8"
 opt.fileformat = "unix"
 opt.fileencoding = "utf-8"
 opt.scrolloff = 5
-opt.backup = false
-opt.writebackup = false
-opt.swapfile = false
+opt.wrap = false
+opt.signcolumn = "yes:1"
+opt.backspace = "indent,eol,start"
+
+
+--- indent ---
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
@@ -22,12 +50,12 @@ opt.breakindent = true
 opt.smartindent = true
 opt.expandtab = true
 opt.autoindent = true
-opt.wrap = false
+
+
+--- search ---
 opt.smartcase = true
 opt.ignorecase = true
-opt.termguicolors = true
-opt.background = "dark"
-opt.clipboard:prepend({"unnamedplus"})
-opt.backspace = "indent,eol,start"
+
+
+--- lsp ---
 opt.completeopt = "menu,menuone,noselect"
-opt.signcolumn = "yes:1"

@@ -29,10 +29,6 @@ end
 
 
 require("lazy").setup({
-    --- nvim lua api ---
-    { "folke/neodev.nvim" },
-
-
     --- appearance ---
     { "ellisonleao/gruvbox.nvim", config=setup("c", "gruvbox") },
     { "glepnir/dashboard-nvim", config=setup("c", "dashboard") },
@@ -51,7 +47,6 @@ require("lazy").setup({
     { "lukas-reineke/indent-blankline.nvim", config=setup("c", "indent_blankline"), lazy=true, event="BufRead" },
     { "folke/todo-comments.nvim", config=setup("c", "todo_comments") },
     { "akinsho/bufferline.nvim", config=setup("c", "bufferline"), lazy=true, event="BufRead" },
-    { "nvim-tree/nvim-tree.lua", config=setup("c", "nvim_tree"), lazy=true, keys = { { "<C-n>", ":NvimTreeToggle<CR>" } } },
     { "nvim-treesitter/nvim-treesitter", config=setup("c", "treesitter"), lazy=true, event="BufRead" },
     { "nvim-telescope/telescope.nvim", config=setup("c", "telescope"), lazy=true, cmd="Telescope" },
     { "nvim-telescope/telescope-file-browser.nvim", lazy=true, cmd="Telescope" },
@@ -70,4 +65,8 @@ require("lazy").setup({
     { "saadparwaiz1/cmp_luasnip", lazy=true, event="BufRead" },
     { "kevinoid/vim-jsonc" },
     { "neoclide/vim-jsx-improve" }
+
+
+    --- maybe later ---
+    -- { "nvim-tree/nvim-tree.lua", config=setup("c", "nvim_tree"), lazy=true, keys = { { "<C-n>", ":NvimTreeToggle<CR>" } } },
 })

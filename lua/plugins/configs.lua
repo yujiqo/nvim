@@ -24,7 +24,7 @@ configs.gruvbox = function()
             GruvboxAquaSign = { bg = "none" },
             GruvboxOrangeSign = { bg = "none" }
         },
-        contrast = "soft",
+        contrast = "hard",
         dim_inactive = true,
         transparent_mode = false,
     }
@@ -81,7 +81,7 @@ configs.devicons = function()
     local devicons = require("nvim-web-devicons")
 
     devicons.setup({
-        override = {} -- TODO: add icons ovverride
+        override = {} -- TODO: add icons override
     })
 end
 
@@ -89,7 +89,7 @@ end
 configs.staline = function()
     local staline = require("staline")
 
-    staline.setup({
+    staline.setup {
         defaults = {
             true_colors = true,
             line_column = " [%l/%L] :%c  ",
@@ -99,10 +99,10 @@ configs.staline = function()
         },
 
         mode_colors = {
-            n = "#ff6b6b",
+            n = "#cccccc",
             i = "#ff6b6b",
-            c = "#f8ff60",
-            v = "#6b6bff"
+            c = "#6b6bff",
+            v = "#f8ff60"
         },
 
         sections = {
@@ -110,7 +110,7 @@ configs.staline = function()
             mid  = {},
             right = { "right_sep_double", "-line_column" }
         }
-    })
+    }
 end
 
 
@@ -160,11 +160,11 @@ configs.bufferline = function()
             show_close_icon = false,
             show_tab_indicators = true,
             show_duplicate_prefix = true,
-            separator_style = "slant",
+            separator_style = { "", "" },
             always_show_bufferline = false,
 
             indicator = {
-                style = "none"
+                style = "underline"
             },
 
             offsets = {
@@ -177,100 +177,6 @@ configs.bufferline = function()
 
             hover = {
                 enabled = false
-            }
-        }
-    }
-end
-
-
-configs.nvim_tree = function()
-    local nvim_tree = require("nvim-tree")
-
-    nvim_tree.setup {
-        filters = {
-            dotfiles = false
-        },
-
-        disable_netrw = true,
-        hijack_netrw = true,
-        open_on_setup = false,
-        ignore_ft_on_setup = { "alpha" },
-        hijack_cursor = true,
-        hijack_unnamed_buffer_when_opening = false,
-        update_cwd = true,
-
-        update_focused_file = {
-            enable = true,
-            update_cwd = false
-        },
-
-        view = {
-            adaptive_size = true,
-            side = "left",
-            width = 25,
-            hide_root_folder = true,
-            signcolumn = "no"
-        },
-
-        git = {
-            enable = true,
-            ignore = false
-        },
-
-        filesystem_watchers = {
-            enable = true
-        },
-
-        actions = {
-            open_file = {
-                quit_on_open = true,
-                resize_window = true
-            },
-        },
-
-        renderer = {
-            highlight_git = false,
-            highlight_opened_files = "none",
-            add_trailing = false,
-            group_empty = false,
-            full_name = false,
-            indent_width = 2,
-
-            indent_markers = {
-                enable = true,
-                inline_arrows = false,
-
-                icons = {
-                    corner = "└",
-                    edge = "│",
-                    item = "│",
-                    bottom = "─",
-                    none = " "
-                }
-            },
-
-            icons = {
-                git_placement = "after",
-                padding = " ",
-
-                show = {
-                    file = false,
-                    folder = true,
-                    folder_arrow = false,
-                    git = true
-                },
-
-                glyphs = {
-                    git = {
-                        unstaged = "M",
-                        staged = "A",
-                        unmerged = "",
-                        renamed = "R",
-                        untracked = "U",
-                        deleted = "D",
-                        ignored = ""
-                    }
-                }
             }
         }
     }
@@ -332,8 +238,6 @@ end
 
 
 configs.lspconfig_w_mason = function()
-    require("neodev").setup()
-
     local lspconfig = require("lspconfig")
     local lsp_defaults = lspconfig.util.default_config
 
@@ -434,6 +338,100 @@ configs.cmp = function()
             }
         }
     )
+end
+
+
+configs.nvim_tree = function()
+    local nvim_tree = require("nvim-tree")
+
+    nvim_tree.setup {
+        filters = {
+            dotfiles = false
+        },
+
+        disable_netrw = true,
+        hijack_netrw = true,
+        open_on_setup = false,
+        ignore_ft_on_setup = { "alpha" },
+        hijack_cursor = true,
+        hijack_unnamed_buffer_when_opening = false,
+        update_cwd = true,
+
+        update_focused_file = {
+            enable = true,
+            update_cwd = false
+        },
+
+        view = {
+            adaptive_size = true,
+            side = "left",
+            width = 25,
+            hide_root_folder = true,
+            signcolumn = "no"
+        },
+
+        git = {
+            enable = true,
+            ignore = false
+        },
+
+        filesystem_watchers = {
+            enable = true
+        },
+
+        actions = {
+            open_file = {
+                quit_on_open = true,
+                resize_window = true
+            },
+        },
+
+        renderer = {
+            highlight_git = false,
+            highlight_opened_files = "none",
+            add_trailing = false,
+            group_empty = false,
+            full_name = false,
+            indent_width = 2,
+
+            indent_markers = {
+                enable = true,
+                inline_arrows = false,
+
+                icons = {
+                    corner = "└",
+                    edge = "│",
+                    item = "│",
+                    bottom = "─",
+                    none = " "
+                }
+            },
+
+            icons = {
+                git_placement = "after",
+                padding = " ",
+
+                show = {
+                    file = false,
+                    folder = true,
+                    folder_arrow = false,
+                    git = true
+                },
+
+                glyphs = {
+                    git = {
+                        unstaged = "M",
+                        staged = "A",
+                        unmerged = "",
+                        renamed = "R",
+                        untracked = "U",
+                        deleted = "D",
+                        ignored = ""
+                    }
+                }
+            }
+        }
+    }
 end
 
 
