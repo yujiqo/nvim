@@ -80,9 +80,20 @@ end
 configs.devicons = function()
     local devicons = require("nvim-web-devicons")
 
-    devicons.setup({
-        override = {} -- TODO: add icons override
-    })
+    devicons.setup {
+        override = {
+            js = {
+                icon = "",
+                color = "#FFE800",
+                name = "Js"
+            },
+            ts = {
+                icon = "ﯤ",
+                color = "#519aba",
+                name = "Ts"
+            }
+        }
+    }
 end
 
 
@@ -342,98 +353,98 @@ configs.cmp = function()
 end
 
 
-configs.nvim_tree = function()
-    local nvim_tree = require("nvim-tree")
-
-    nvim_tree.setup {
-        filters = {
-            dotfiles = false
-        },
-
-        disable_netrw = true,
-        hijack_netrw = true,
-        open_on_setup = false,
-        ignore_ft_on_setup = { "alpha" },
-        hijack_cursor = true,
-        hijack_unnamed_buffer_when_opening = false,
-        update_cwd = true,
-
-        update_focused_file = {
-            enable = true,
-            update_cwd = false
-        },
-
-        view = {
-            adaptive_size = true,
-            side = "left",
-            width = 25,
-            hide_root_folder = true,
-            signcolumn = "no"
-        },
-
-        git = {
-            enable = true,
-            ignore = false
-        },
-
-        filesystem_watchers = {
-            enable = true
-        },
-
-        actions = {
-            open_file = {
-                quit_on_open = true,
-                resize_window = true
-            },
-        },
-
-        renderer = {
-            highlight_git = false,
-            highlight_opened_files = "none",
-            add_trailing = false,
-            group_empty = false,
-            full_name = false,
-            indent_width = 2,
-
-            indent_markers = {
-                enable = true,
-                inline_arrows = false,
-
-                icons = {
-                    corner = "└",
-                    edge = "│",
-                    item = "│",
-                    bottom = "─",
-                    none = " "
-                }
-            },
-
-            icons = {
-                git_placement = "after",
-                padding = " ",
-
-                show = {
-                    file = false,
-                    folder = true,
-                    folder_arrow = false,
-                    git = true
-                },
-
-                glyphs = {
-                    git = {
-                        unstaged = "M",
-                        staged = "A",
-                        unmerged = "",
-                        renamed = "R",
-                        untracked = "U",
-                        deleted = "D",
-                        ignored = ""
-                    }
-                }
-            }
-        }
-    }
-end
+-- configs.nvim_tree = function()
+--     local nvim_tree = require("nvim-tree")
+--
+--     nvim_tree.setup {
+--         filters = {
+--             dotfiles = false
+--         },
+--
+--         disable_netrw = true,
+--         hijack_netrw = true,
+--         open_on_setup = false,
+--         ignore_ft_on_setup = { "alpha" },
+--         hijack_cursor = true,
+--         hijack_unnamed_buffer_when_opening = false,
+--         update_cwd = true,
+--
+--         update_focused_file = {
+--             enable = true,
+--             update_cwd = false
+--         },
+--
+--         view = {
+--             adaptive_size = true,
+--             side = "left",
+--             width = 25,
+--             hide_root_folder = true,
+--             signcolumn = "no"
+--         },
+--
+--         git = {
+--             enable = true,
+--             ignore = false
+--         },
+--
+--         filesystem_watchers = {
+--             enable = true
+--         },
+--
+--         actions = {
+--             open_file = {
+--                 quit_on_open = true,
+--                 resize_window = true
+--             },
+--         },
+--
+--         renderer = {
+--             highlight_git = false,
+--             highlight_opened_files = "none",
+--             add_trailing = false,
+--             group_empty = false,
+--             full_name = false,
+--             indent_width = 2,
+--
+--             indent_markers = {
+--                 enable = true,
+--                 inline_arrows = false,
+--
+--                 icons = {
+--                     corner = "└",
+--                     edge = "│",
+--                     item = "│",
+--                     bottom = "─",
+--                     none = " "
+--                 }
+--             },
+--
+--             icons = {
+--                 git_placement = "after",
+--                 padding = " ",
+--
+--                 show = {
+--                     file = false,
+--                     folder = true,
+--                     folder_arrow = false,
+--                     git = true
+--                 },
+--
+--                 glyphs = {
+--                     git = {
+--                         unstaged = "M",
+--                         staged = "A",
+--                         unmerged = "",
+--                         renamed = "R",
+--                         untracked = "U",
+--                         deleted = "D",
+--                         ignored = ""
+--                     }
+--                 }
+--             }
+--         }
+--     }
+-- end
 
 
 return configs
