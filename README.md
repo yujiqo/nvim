@@ -9,7 +9,7 @@ It's a really simple config that's can be used for small and not small developme
 
 ### Main plugins
 
-- [`lazy.nvim`](https://github.com/folke/lazy.nvim) used as plugin manager
+- [`packer.nvim`](https://github.com/wbthomason/packer.nvim) used as plugin manager
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as inproject search
 - [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) used as syntax highlighter
 - [`mason.nvim`](https://github.com/williamboman/mason.nvim) used as lsp manager
@@ -28,6 +28,6 @@ and others for some additional functionality :)
 ```
 git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ```
-- Install [`lazy.nvim`](https://github.com/folke/lazy.nvim)
-- In nvim run `:Lazy sync` and restart
+- Install [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
+- In nvim run `:PackerSync` and restart
 - In nvim run `:checkhealth` and install some requirements from command output window
