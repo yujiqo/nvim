@@ -18,7 +18,8 @@ M.parsers = {
     "javascript",
     "typescript",
     "tsx",
-    "yaml"
+    "yaml",
+    "vim"
 }
 
 M.servers = {

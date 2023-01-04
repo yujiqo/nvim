@@ -24,8 +24,8 @@ configs.gruvbox = function()
             GruvboxAquaSign = { bg = "none" },
             GruvboxOrangeSign = { bg = "none" }
         },
-        contrast = "hard",
-        dim_inactive = true,
+        contrast = "soft",
+        dim_inactive = false,
         transparent_mode = false,
     }
 
@@ -112,8 +112,8 @@ configs.staline = function()
         mode_colors = {
             n = "#cccccc",
             i = "#ff6b6b",
-            c = "#6b6bff",
-            v = "#f8ff60"
+            c = "#ffbc62",
+            v = "#6b6bff"
         },
 
         sections = {
@@ -129,9 +129,7 @@ configs.indent_blankline = function()
     local indent_blankline = require("indent_blankline");
 
     indent_blankline.setup {
-        char = "▏",
-        show_current_context = true,
-        show_current_context_start = false,
+        char = "▏"
     }
 end
 
@@ -161,6 +159,41 @@ configs.bufferline = function()
     local bufferline = require("bufferline")
 
     bufferline.setup {
+        highlights = {
+            buffer_selected = {
+                italic = false
+            },
+            numbers_selected = {
+                italic = false
+            },
+            diagnostic_selected = {
+                italic = false
+            },
+            hint_selected = {
+                italic = false
+            },
+            hint_diagnostic_selected = {
+                italic = false
+            },
+            info_selected = {
+                italic = false
+            },
+            info_diagnostic_selected = {
+                italic = false
+            },
+            warning_selected = {
+                italic = false
+            },
+            warning_diagnostic_selected = {
+                italic = false
+            },
+            error_selected = {
+                italic = false
+            },
+            error_diagnostic_selected = {
+                italic = false
+            },
+        },
         options = {
             mode = "buffers",
             numbers = "none",
