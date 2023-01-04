@@ -1,5 +1,6 @@
 local opt = vim.opt
 local g = vim.g
+local wo = vim.wo
 
 
 --- disable netrw ---
@@ -40,6 +41,7 @@ opt.scrolloff = 5
 opt.wrap = false
 opt.signcolumn = "yes:1"
 opt.backspace = "indent,eol,start"
+vim.wo.fillchars = "eob: "
 
 
 --- indent ---

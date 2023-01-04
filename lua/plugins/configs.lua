@@ -118,6 +118,7 @@ configs.indent_blankline = function()
     local indent_blankline = require("indent_blankline");
 
     indent_blankline.setup {
+        char = "▏",
         show_current_context = true,
         show_current_context_start = false,
     }
