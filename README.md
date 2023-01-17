@@ -3,9 +3,12 @@ It's a really simple config that's can be used for small and not small developme
 
 <br>
 
-![](https://user-images.githubusercontent.com/92727678/209987213-9ba9ee77-ae2e-47eb-b1cc-96f0c8b9ab96.png)
+![](https://user-images.githubusercontent.com/92727678/212908497-106d7266-de2a-4adc-b969-5d0519341d2d.png)
 
-![](https://user-images.githubusercontent.com/92727678/209987617-827c995f-f68a-4418-a79a-e7aca5c24e2e.png)
+![](https://user-images.githubusercontent.com/92727678/212908560-8ff34938-627f-4f1b-9666-60e8cb6b09d1.png)
+
+![](https://user-images.githubusercontent.com/92727678/212908611-945ac2c7-6f87-47f7-822f-d28946c8bc4f.png)
+
 
 ### Main plugins
 
