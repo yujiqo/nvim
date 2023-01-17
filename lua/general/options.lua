@@ -1,6 +1,5 @@
 local opt = vim.opt
 local g = vim.g
-local wo = vim.wo
 
 
 --- disable netrw ---
@@ -30,6 +29,8 @@ opt.clipboard:prepend { "unnamed", "unnamedplus" } -- windows
 --- statusline ---
 opt.laststatus = 2
 opt.showmode = false
+opt.ruler = false
+opt.showcmd = false
 
 
 --- file ---
@@ -41,7 +42,7 @@ opt.scrolloff = 5
 opt.wrap = false
 opt.signcolumn = "yes:1"
 opt.backspace = "indent,eol,start"
-vim.wo.fillchars = "eob: "
+opt.fillchars = { eob = " " }
 
 
 --- indent ---
@@ -61,3 +62,14 @@ opt.ignorecase = true
 
 --- lsp ---
 opt.completeopt = "menu,menuone,noselect"
+
+
+--- neovide ---
+if g.neovide then
+    opt.guifont = { "agave NF r", ":h20" }
+
+    g.neovide_transparency = 0.9
+    g.neovide_remember_window_size = true
+    g.neovide_cursor_vfx_mode = "wireframe"
+    g.neovide_underline_automatic_scaling = false
+end

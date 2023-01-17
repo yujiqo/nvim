@@ -24,7 +24,7 @@ configs.gruvbox = function()
             GruvboxAquaSign = { bg = "none" },
             GruvboxOrangeSign = { bg = "none" }
         },
-        contrast = "soft",
+        contrast = "hard",
         dim_inactive = false,
         transparent_mode = false,
     }
@@ -65,6 +65,8 @@ configs.dashboard = function()
             shortcut = " "
         }
     }
+
+    vim.cmd[[au BufEnter * silent! set laststatus=2]]
 end
 
 
@@ -111,7 +113,7 @@ configs.staline = function()
 
         mode_colors = {
             n = "#cccccc",
-            i = "#ff6b6b",
+            i = "#ff2055",
             c = "#ffbc62",
             v = "#6b6bff"
         },
@@ -129,7 +131,7 @@ configs.indent_blankline = function()
     local indent_blankline = require("indent_blankline");
 
     indent_blankline.setup {
-        char = "▏"
+        -- char = "▏"
     }
 end
 
@@ -160,10 +162,21 @@ configs.bufferline = function()
 
     bufferline.setup {
         highlights = {
+            fill = {
+                fg = "#cccccc"
+            },
+            background = {
+                fg = "#cccccc"
+            },
+            tab = {
+                fg = "#cccccc"
+            },
             buffer_selected = {
+                fg = "#ff2055",
                 italic = false
             },
             numbers_selected = {
+                fg = "#ff2055",
                 italic = false
             },
             diagnostic_selected = {
@@ -198,9 +211,9 @@ configs.bufferline = function()
             mode = "buffers",
             numbers = "none",
             modified_icon = "●",
-            tab_size = 15,
+            tab_size = 8,
             diagnostics = "nvim_lsp",
-            show_buffer_icons = false,
+            show_buffer_icons = true,
             show_buffer_close_icons = false,
             show_close_icon = false,
             show_tab_indicators = true,
@@ -209,7 +222,7 @@ configs.bufferline = function()
             always_show_bufferline = false,
 
             indicator = {
-                style = "underline"
+                style = "none"
             },
 
             offsets = {
@@ -366,9 +379,9 @@ configs.cmp = function()
             { name = "luasnip" }
         },
 
-        experimental = {
-            ghost_text = true
-        }
+        -- experimental = {
+        --     ghost_text = true
+        -- }
     }
 
     cmp.setup.cmdline(
