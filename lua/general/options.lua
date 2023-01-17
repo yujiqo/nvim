@@ -13,6 +13,12 @@ opt.writebackup = false
 opt.swapfile = false
 
 
+--- cursorline ---
+vim.cmd[[hi CursorLineNr guifg=#ffffff]]
+opt.cursorline = true
+opt.cursorlineopt = "number"
+
+
 --- highlights ---
 opt.termguicolors = true
 opt.winblend = 0
