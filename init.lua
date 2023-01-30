@@ -1,5 +1,5 @@
 --- plugins ---
-require "plugins.packer"
+require "packer-setup"
 
 
 --- general ---

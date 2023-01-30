@@ -14,7 +14,6 @@ opt.swapfile = false
 
 
 --- cursorline ---
-vim.cmd[[hi CursorLineNr guifg=#ffffff]]
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
@@ -42,8 +41,8 @@ opt.showcmd = false
 --- file ---
 opt.number = true
 opt.encoding = "utf-8"
-opt.fileformat = "unix"
 opt.fileencoding = "utf-8"
+opt.fileformat = "unix"
 opt.scrolloff = 5
 opt.wrap = false
 opt.signcolumn = "yes:1"

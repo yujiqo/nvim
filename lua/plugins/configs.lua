@@ -1,43 +1,6 @@
 local configs = {}
 
 
-configs.dashboard = function()
-    local dashboard = require("dashboard")
-
-    dashboard.custom_header = {
-        "                                                   ",
-        "                                                   ",
-        "                                                   ",
-        "                                                   ",
-        "                                                   ",
-        "                                                   ",
-        "                                                   ",
-        " ██▓ ███▄ ▄███▓ ██▀███   ██▒   █▓ ██▀███    ██████ ",
-        "▓██▒▓██▒▀█▀ ██▒▓██ ▒ ██▒▓██░   █▒▓██ ▒ ██▒▒██    ▒ ",
-        "▒██▒▓██    ▓██░▓██ ░▄█ ▒ ▓██  █▒░▓██ ░▄█ ▒░ ▓██▄   ",
-        "▒██▒▓██    ▓██░▓██ ░▄█ ▒ ▓██  █▒░▓██ ░▄█ ▒░ ▓██▄   ",
-        "░██░▒██    ▒██ ▒██▀▀█▄    ▒██ █░░▒██▀▀█▄    ▒   ██▒",
-        "░██░▒██▒   ░██▒░██▓ ▒██▒   ▒▀█░  ░██▓ ▒██▒▒██████▒▒",
-        "░▓  ░ ▒░   ░  ░░ ▒▓ ░▒▓░   ░ ▐░  ░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░",
-        " ▒ ░░  ░      ░  ░▒ ░ ▒░   ░ ░░    ░▒ ░ ▒░░ ░▒  ░ ░",
-        " ▒ ░░      ░     ░░   ░      ░░    ░░   ░ ░  ░  ░  ",
-        " ░         ░      ░           ░     ░           ░  ",
-        "                             ░                     "
-    }
-
-    dashboard.custom_center = {
-        {
-            icon = " ",
-            desc = " ",
-            action = "qa",
-            shortcut = " "
-        }
-    }
-
-    vim.cmd[[au BufEnter * silent! set laststatus=2]]
-end
-
-
 configs.transparent = function()
     local transparent = require("transparent")
 
@@ -81,8 +44,8 @@ configs.staline = function()
 
         mode_colors = {
             n = "#cccccc",
-            i = "#ff2055",
-            c = "#ffbc62",
+            i = "#1aaaaa",
+            c = "#ff6b6b",
             v = "#6b6bff"
         },
 
@@ -91,15 +54,6 @@ configs.staline = function()
             mid  = {},
             right = { "right_sep_double", "-line_column" }
         }
-    }
-end
-
-
-configs.indent_blankline = function()
-    local indent_blankline = require("indent_blankline");
-
-    indent_blankline.setup {
-        -- char = "▏"
     }
 end
 
@@ -116,7 +70,7 @@ configs.todo_comments = function()
             FIX = { icon = " ", color = "error" }
         },
         colors = {
-            hint = { "DiagnosticHint", "#10B981" },
+            hint = { "DiagnosticHint", "#1aaaaa" },
             info = { "DiagnosticInfo", "#6b6bff" },
             warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
             error = { "DiagnosticError", "ErrorMsg", "#ff6b6b" }
@@ -131,20 +85,20 @@ configs.bufferline = function()
     bufferline.setup {
         highlights = {
             fill = {
-                fg = "#cccccc"
+                fg = "#4c4c4c"
             },
             background = {
-                fg = "#cccccc"
+                fg = "#4c4c4c"
             },
             tab = {
-                fg = "#cccccc"
+                fg = "#4c4c4c"
             },
             buffer_selected = {
-                fg = "#ff2055",
+                fg = "#cccccc",
                 italic = false
             },
             numbers_selected = {
-                fg = "#ff2055",
+                fg = "#cccccc",
                 italic = false
             },
             diagnostic_selected = {
@@ -241,10 +195,10 @@ end
 
 configs.lspconfig = function()
     vim.diagnostic.config({
-        -- virtual_text = {
-        --     prefix = ""
-        -- },
-        virtual_text = false,
+        virtual_text = {
+            prefix = ""
+        },
+        -- virtual_text = false,
         underline = {Error=true},
         float = {
             header = "",
@@ -314,17 +268,12 @@ configs.cmp = function()
         },
 
         formatting = {
-            fields = { 'abbr', 'kind' },
-            format = function(entry, item)
+            fields = { 'kind', 'abbr', 'menu' },
+            format = function(_, item)
                 item.kind = kind_icons[item.kind] or " "
-                item.menu = source_names[entry.source.name] or " "
+                item.menu = "  "
                 return item
             end
-        },
-
-        window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered()
         },
 
         snippet = {
@@ -366,100 +315,6 @@ configs.cmp = function()
         }
     )
 end
-
-
--- configs.nvim_tree = function()
---     local nvim_tree = require("nvim-tree")
---
---     nvim_tree.setup {
---         filters = {
---             dotfiles = false
---         },
---
---         disable_netrw = true,
---         hijack_netrw = true,
---         open_on_setup = false,
---         ignore_ft_on_setup = { "alpha" },
---         hijack_cursor = true,
---         hijack_unnamed_buffer_when_opening = false,
---         update_cwd = true,
---
---         update_focused_file = {
---             enable = true,
---             update_cwd = false
---         },
---
---         view = {
---             adaptive_size = true,
---             side = "left",
---             width = 25,
---             hide_root_folder = true,
---             signcolumn = "no"
---         },
---
---         git = {
---             enable = true,
---             ignore = false
---         },
---
---         filesystem_watchers = {
---             enable = true
---         },
---
---         actions = {
---             open_file = {
---                 quit_on_open = true,
---                 resize_window = true
---             },
---         },
---
---         renderer = {
---             highlight_git = false,
---             highlight_opened_files = "none",
---             add_trailing = false,
---             group_empty = false,
---             full_name = false,
---             indent_width = 2,
---
---             indent_markers = {
---                 enable = true,
---                 inline_arrows = false,
---
---                 icons = {
---                     corner = "└",
---                     edge = "│",
---                     item = "│",
---                     bottom = "─",
---                     none = " "
---                 }
---             },
---
---             icons = {
---                 git_placement = "after",
---                 padding = " ",
---
---                 show = {
---                     file = false,
---                     folder = true,
---                     folder_arrow = false,
---                     git = true
---                 },
---
---                 glyphs = {
---                     git = {
---                         unstaged = "M",
---                         staged = "A",
---                         unmerged = "",
---                         renamed = "R",
---                         untracked = "U",
---                         deleted = "D",
---                         ignored = ""
---                     }
---                 }
---             }
---         }
---     }
--- end
 
 
 return configs
