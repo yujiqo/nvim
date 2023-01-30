@@ -1,17 +1,3 @@
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
-end
-
-local packer_bootstrap = ensure_packer()
-
-
 local setup_plugin = function(setup_type, setup_name)
     if setup_type == "d" then
         return ('require("%s").setup()'):format(setup_name)
@@ -40,12 +26,12 @@ require("packer").startup({
 
 
         --- themes ---
-        use { "lunarvim/horizon.nvim", config=setup_theme("d", "horizon") }
-        use { "ellisonleao/gruvbox.nvim", config=setup_theme("c", "gruvbox") }
+        use { "sainnhe/gruvbox-material", config=setup_theme("c", "gruvbox_material") }
+        -- use { "ellisonleao/gruvbox.nvim", config=setup_theme("c", "gruvbox") }
+        -- use { "lunarvim/horizon.nvim", config=setup_theme("d", "horizon") }
 
 
         --- appearance ---
-        use { "glepnir/dashboard-nvim", config=setup_plugin("c", "dashboard") }
         use { "xiyaowong/nvim-transparent", config=setup_plugin("c", "transparent") }
         use { "kyazdani42/nvim-web-devicons", config=setup_plugin("c", "devicons") }
         use { "tamton-aquib/staline.nvim", config=setup_plugin("c", "staline") }
@@ -55,10 +41,8 @@ require("packer").startup({
         --- general ---
         use { "nvim-lua/plenary.nvim" }
         use { "cappyzawa/trim.nvim", config=setup_plugin("d", "trim") }
-        use { "windwp/nvim-autopairs", config=setup_plugin("d", "nvim-autopairs") }
         use { "norcalli/nvim-colorizer.lua", config=setup_plugin("d", "colorizer") }
         use { "numToStr/Comment.nvim", config=setup_plugin("d", "Comment") }
-        use { "lukas-reineke/indent-blankline.nvim", config=setup_plugin("c", "indent_blankline")  }
         use { "folke/todo-comments.nvim", config=setup_plugin("c", "todo_comments") }
         use { "akinsho/bufferline.nvim", config=setup_plugin("c", "bufferline") }
         use { "nvim-treesitter/nvim-treesitter", config=setup_plugin("c", "treesitter") }
@@ -79,9 +63,5 @@ require("packer").startup({
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
         use { "kevinoid/vim-jsonc" }
         use { "neoclide/vim-jsx-improve" }
-
-
-        --- maybe later ---
-        -- use { "nvim-tree/nvim-tree.lua", config=setup_plugin("c", "nvim_tree") }
     end
 })
