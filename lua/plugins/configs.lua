@@ -30,34 +30,6 @@ configs.devicons = function()
 end
 
 
-configs.staline = function()
-    local staline = require("staline")
-
-    staline.setup {
-        defaults = {
-            true_colors = true,
-            line_column = " [%l/%L] :%c  ",
-            branch_symbol = " ",
-            left_separator = "",
-            right_separator = ""
-        },
-
-        mode_colors = {
-            n = "#cccccc",
-            i = "#1aaaaa",
-            c = "#ff6b6b",
-            v = "#6b6bff"
-        },
-
-        sections = {
-            left = { "- ", "-mode", "left_sep_double", " ", "file_name", " ", "lsp", "branch" },
-            mid  = {},
-            right = { "right_sep_double", "-line_column" }
-        }
-    }
-end
-
-
 configs.todo_comments = function()
     local todo = require("todo-comments")
 
@@ -246,14 +218,6 @@ end
 configs.cmp = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
-
-    local source_names = {
-        nvim_lsp = "[LSP]",
-        path = "[Path]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]"
-    }
-
     local kind_icons = {
         Text = " ", Method = ' ', Function = ' ', Constructor = ' ', Field = ' ',
         Variable = ' ', Class = ' ', Interface = ' ', Module = ' ', Property = ' ',
@@ -261,6 +225,7 @@ configs.cmp = function()
         Color = ' ', File = ' ', Reference = ' ', Folder = ' ', EnumMember = ' ',
         Constant = ' ', Struct = ' ', Event = ' ', Operator = ' ', TypeParameter = ' '
     }
+
 
     cmp.setup {
         completion = {
@@ -286,14 +251,14 @@ configs.cmp = function()
             ["<C-b>"] = cmp.mapping.scroll_docs(-1),
             ["<C-f>"] = cmp.mapping.scroll_docs(1),
             ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ["<C-e>"] = cmp.mapping.abort(),
             ["<CR>"] = cmp.mapping.confirm({ select = true })
         },
 
         sources = cmp.config.sources {
             { name = "nvim_lsp" },
-            { name = "nvim_lsp_signature_help" },
-            { name = "path" },
             { name = "buffer" },
+            { name = "path" },
             { name = "luasnip" }
         },
 

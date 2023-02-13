@@ -34,7 +34,7 @@ M.servers = {
     "marksman",
     "pyright",
     "sqlls",
-    "sumneko_lua",
+    "lua_ls",
     "tsserver",
     "yamlls"
 }

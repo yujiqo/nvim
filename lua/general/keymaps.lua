@@ -4,19 +4,27 @@ vim.g.mapleader = " "
 
 
 map("n", "x", '"_x')
-map("n", "=", "<C-a>")
-map("n", "-", "<C-x>")
 
 map("n", "<C-a>", "ggVG")
+map("i", "jk", "<ESC>")
 
-map("i", "<M-z>", "<ESC>")
+map("n", "<leader>=", "<C-a>")
+map("n", "<leader>-", "<C-x>")
+
+map("n", "<leader>sv", "<C-w>v")
+map("n", "<leader>sh", "<C-w>s")
+map("n", "<leader>se", "<C-w>=")
+map("n", "<leader>sx", ":close<CR>", { silent = true })
+map("n", "<leader>sm", ":MaximizerToggle<CR>", { silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
 map("n", "<leader>x", ":bdelete!<CR>", { silent = true })
 
 map("n", "<TAB>"    , ":BufferLineCycleNext<CR>", { silent = true })
 map("n", "<S-TAB>"  , ":BufferLineCyclePrev<CR>", { silent = true })
+map("n", "<leader>h", ":BufferLineMovePrev<CR>", { silent = true })
 map("n", "<leader><Left>", ":BufferLineMovePrev<CR>", { silent = true })
+map("n", "<leader>l", ":BufferLineMoveNext<CR>", { silent = true })
 map("n", "<leader><Right>", ":BufferLineMoveNext<CR>", { silent = true })
 
 map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>")
