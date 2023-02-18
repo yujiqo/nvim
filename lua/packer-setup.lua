@@ -34,7 +34,7 @@ require("packer").startup({
         --- appearance ---
         use { "xiyaowong/nvim-transparent", config=setup_plugin("c", "transparent") }
         use { "kyazdani42/nvim-web-devicons", config=setup_plugin("c", "devicons") }
-        use { "nvim-lualine/lualine.nvim", config=setup_plugin("d", "lualine") }
+        use { "nvim-lualine/lualine.nvim", config=setup_plugin("c", "lualine") }
         use { "lewis6991/gitsigns.nvim", config=setup_plugin("d", "gitsigns") }
 
 
@@ -61,6 +61,7 @@ require("packer").startup({
         use { "hrsh7th/cmp-path", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-buffer", after={"nvim-cmp"} }
+        use { "hrsh7th/cmp-cmdline", after={"nvim-cmp"} }
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
         use { "kevinoid/vim-jsonc" }
         use { "neoclide/vim-jsx-improve" }

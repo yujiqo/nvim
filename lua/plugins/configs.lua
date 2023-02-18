@@ -30,6 +30,31 @@ configs.devicons = function()
 end
 
 
+configs.lualine = function()
+    local lualine = require("lualine")
+
+    lualine.setup {
+        options = {
+            icons_enabled = true,
+            section_separators = { left = '', right = ''},
+            component_separators = { left = '', right = ''}
+        },
+        sections = {
+            lualine_a = { "mode" },
+            lualine_b = { "diagnostics" },
+            lualine_c = {
+                "filename",
+                "filetype"
+            },
+            lualine_x = {
+            },
+            lualine_y = { "branch", "diff" },
+            lualine_z = { "location" }
+        }
+    }
+end
+
+
 configs.todo_comments = function()
     local todo = require("todo-comments")
 
@@ -102,7 +127,7 @@ configs.bufferline = function()
             },
         },
         options = {
-            mode = "buffers",
+            mode = "tabs",
             numbers = "none",
             modified_icon = "●",
             tab_size = 8,
@@ -267,18 +292,13 @@ configs.cmp = function()
         -- }
     }
 
-    cmp.setup.cmdline(
-        ":",
-        {
-            mapping=cmp.mapping.preset.cmdline(),
-            sources = {
-                {
-                    name="cmdline",
-                    keyword_length=3
-                }
-            }
-        }
-    )
+    cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources(
+            {{ name = 'path' }},
+            {{ name = 'cmdline' }}
+        )
+    })
 end
 
 
