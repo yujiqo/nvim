@@ -33,18 +33,19 @@ opt.clipboard:prepend { "unnamed", "unnamedplus" } -- windows
 
 --- statusline ---
 opt.laststatus = 2
-opt.showmode = false
-opt.ruler = false
+opt.showmode = true
+opt.ruler = true
 opt.showcmd = false
 
 
 --- file ---
+-- opt.relativenumber = true
 opt.number = true
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileformat = "unix"
 opt.scrolloff = 5
-opt.wrap = true
+opt.wrap = false
 opt.signcolumn = "yes:1"
 opt.backspace = "indent,eol,start"
 opt.fillchars = { eob = " " }
@@ -71,9 +72,11 @@ opt.completeopt = "menu,menuone,noselect"
 
 --- neovide ---
 if g.neovide then
-    opt.guifont = { "agave NF r", ":h20" }
+    opt.guifont = { "Iosevka Nerd Font", ":h16" }
 
-    g.neovide_transparency = 0.9
+    g.neovide_transparency = 0.0
+    g.neovide_transparency = 0.95
+    g.neovide_background_color = "#0f1117" .. require("utils").alpha()
     g.neovide_remember_window_size = true
     g.neovide_cursor_vfx_mode = "wireframe"
     g.neovide_underline_automatic_scaling = false

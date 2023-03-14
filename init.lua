@@ -1,7 +1,6 @@
 --- plugins ---
-require "packer-setup"
-
+require("packer-setup")
 
 --- general ---
-require "general.options"
-require "general.keymaps"
+require("options")
+require("keymaps")
