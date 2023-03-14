@@ -1,12 +1,6 @@
 ## Something about
 It's a really simple config that's can be used for small and not small development with help of powerful ⚡ plugins for neovim.
 
-<br>
-
-![](https://user-images.githubusercontent.com/92727678/209987213-9ba9ee77-ae2e-47eb-b1cc-96f0c8b9ab96.png)
-
-![](https://user-images.githubusercontent.com/92727678/209987617-827c995f-f68a-4418-a79a-e7aca5c24e2e.png)
-
 ### Main plugins
 
 - [`packer.nvim`](https://github.com/wbthomason/packer.nvim) used as plugin manager
