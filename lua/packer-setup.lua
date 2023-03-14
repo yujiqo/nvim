@@ -1,19 +1,7 @@
-local setup_plugin = function(setup_type, setup_name)
-    if setup_type == "d" then
-        return ('require("%s").setup()'):format(setup_name)
-    elseif setup_type == "c" then
-        return ('require("plugins.configs").%s()'):format(setup_name)
-    end
-end
+local utils = require("utils")
 
-
-local setup_theme = function(setup_type, setup_name)
-    if setup_type == "d" then
-        return ('vim.cmd[[colorscheme %s]]'):format(setup_name)
-    elseif setup_type == "c" then
-        return ('require("themes.configs").%s()'):format(setup_name)
-    end
-end
+local setup_plugin = utils.setup_plugin
+local setup_theme = utils.setup_theme
 
 
 require("packer").startup({
@@ -21,48 +9,54 @@ require("packer").startup({
         use { "wbthomason/packer.nvim" }
 
 
-        --- nvim lua api ---
-        use { "folke/neodev.nvim" }
-
-
         --- themes ---
-        use { "sainnhe/gruvbox-material", config=setup_theme("c", "gruvbox_material") }
-        -- use { "ellisonleao/gruvbox.nvim", config=setup_theme("c", "gruvbox") }
-        -- use { "lunarvim/horizon.nvim", config=setup_theme("d", "horizon") }
+        use { "rose-pine/neovim", as="rose-pine", config=setup_theme("c", "rose_pine") }
+        -- use { "sainnhe/gruvbox-material", config=setup_theme("c", "gruvbox_material") }
 
 
-        --- appearance ---
-        use { "xiyaowong/nvim-transparent", config=setup_plugin("c", "transparent") }
-        use { "kyazdani42/nvim-web-devicons", config=setup_plugin("c", "devicons") }
-        use { "nvim-lualine/lualine.nvim", config=setup_plugin("c", "lualine") }
-        use { "lewis6991/gitsigns.nvim", config=setup_plugin("d", "gitsigns") }
-
-
-        --- general ---
-        use { "nvim-lua/plenary.nvim" }
-        use { "cappyzawa/trim.nvim", config=setup_plugin("d", "trim") }
+        --- ui ---
+        use { "MunifTanjim/nui.nvim" }
+        use { "xiyaowong/nvim-transparent", config=setup_plugin("c", "transparent", "ui") }
+        use { "kyazdani42/nvim-web-devicons", config=setup_plugin("c", "devicons", "ui") }
         use { "norcalli/nvim-colorizer.lua", config=setup_plugin("d", "colorizer") }
+        use { "levouh/tint.nvim", config=setup_plugin("c", "tint", "ui") }
+        use { "folke/twilight.nvim", config=setup_plugin("c", "twilight", "ui") }
+        use { "folke/zen-mode.nvim", config=setup_plugin("c", "zen_mode", "ui") }
+        use { "nvim-lualine/lualine.nvim", config=setup_plugin("c", "lualine", "ui") }
+        use { "CosmicNvim/cosmic-ui", config=setup_plugin("c", "cosmic", "ui") }
+
+
+        --- misc ---
+        use { "lewis6991/gitsigns.nvim", config=setup_plugin("d", "gitsigns") }
+        use { "nvim-treesitter/nvim-treesitter", config=setup_plugin("c", "treesitter", "misc") }
+
         use { "numToStr/Comment.nvim", config=setup_plugin("d", "Comment") }
-        use { "folke/todo-comments.nvim", config=setup_plugin("c", "todo_comments") }
-        use { "akinsho/bufferline.nvim", config=setup_plugin("c", "bufferline") }
-        use { "nvim-treesitter/nvim-treesitter", config=setup_plugin("c", "treesitter") }
-        use { "nvim-telescope/telescope.nvim", config=setup_plugin("c", "telescope") }
+        use { "folke/todo-comments.nvim", config=setup_plugin("c", "todo_comments", "misc") }
+
+        use { "nvim-lua/plenary.nvim" }
+        use { "akinsho/bufferline.nvim", config=setup_plugin("c", "bufferline", "misc") }
+        use { "nvim-telescope/telescope.nvim", config=setup_plugin("c", "telescope", "misc") }
         use { "nvim-telescope/telescope-file-browser.nvim" }
+
+        use { "cappyzawa/trim.nvim", config=setup_plugin("d", "trim") }
+        use { "windwp/nvim-ts-autotag", config=setup_plugin("d", "nvim-ts-autotag") }
         use { "christoomey/vim-tmux-navigator" }
         use { "szw/vim-maximizer" }
 
 
-        --- lsp & autocmp ---
+        --- lsp ---
+        use { "neovim/nvim-lspconfig" }
         use { "williamboman/mason.nvim", config=setup_plugin("d", "mason") }
-        use { "williamboman/mason-lspconfig.nvim", config=setup_plugin("c", "lspconfig_w_mason") }
-        use { "neovim/nvim-lspconfig", config=setup_plugin("c", "lspconfig") }
+        use { "williamboman/mason-lspconfig.nvim", config=setup_plugin("c", "lspconfig", "lsp") }
+
         use { "L3MON4D3/LuaSnip" }
-        use { "hrsh7th/nvim-cmp", after={"LuaSnip"}, config=setup_plugin("c", "cmp") }
+        use { "hrsh7th/nvim-cmp", after={"LuaSnip"}, config=setup_plugin("c", "cmp", "lsp") }
         use { "hrsh7th/cmp-path", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-buffer", after={"nvim-cmp"} }
         use { "hrsh7th/cmp-cmdline", after={"nvim-cmp"} }
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
+
         use { "kevinoid/vim-jsonc" }
         use { "neoclide/vim-jsx-improve" }
     end
