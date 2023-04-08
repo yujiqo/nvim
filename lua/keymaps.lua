@@ -3,10 +3,16 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 
 
-map("n", "x", '"_x')
-
-map("n", "<C-a>", "ggVG")
 map("i", "jk", "<ESC>")
+
+map("n", "x", '"_x')
+map("n", "<C-a>", "ggVG")
+
+map("i", "<C-j>", "<Up>")
+map("i", "<C-k>", "<Down>")
+map("i", "<C-h>", "<Left>")
+map("i", "<C-l>", "<Right>")
+-- map("i", "jk", "<ESC>")
 
 map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")

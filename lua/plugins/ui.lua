@@ -111,10 +111,10 @@ ui.lualine = function()
         },
         sections = {
             lualine_a = {},
-            lualine_b = {"branch", "diff", "diagnostics"},
-            lualine_c = {"filename", "filetype"},
-            lualine_x = {},
-            lualine_y = {},
+            lualine_b = {"mode", "branch", "diff", "diagnostics"},
+            lualine_c = {"filename"},
+            lualine_x = {"searchcount", "filetype"},
+            lualine_y = {"location"},
             lualine_z = {}
         },
         inactive_sections = {
