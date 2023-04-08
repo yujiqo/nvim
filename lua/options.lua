@@ -33,8 +33,8 @@ opt.clipboard:prepend { "unnamed", "unnamedplus" } -- windows
 
 --- statusline ---
 opt.laststatus = 2
-opt.showmode = true
-opt.ruler = true
+opt.showmode = false
+opt.ruler = false
 opt.showcmd = false
 
 
@@ -45,9 +45,10 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileformat = "unix"
 opt.scrolloff = 5
-opt.wrap = false
+opt.wrap = true
 opt.signcolumn = "yes:1"
 opt.backspace = "indent,eol,start"
+opt.colorcolumn = { 79 }
 opt.fillchars = { eob = " " }
 
 
