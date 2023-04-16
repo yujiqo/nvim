@@ -19,6 +19,6 @@ and others for some additional functionality :)
 ```
 git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ```
-- Install [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
+
 - In nvim run `:PackerSync` and restart
 - In nvim run `:checkhealth` and install some requirements from command output window
