@@ -1,15 +1,6 @@
 local ui = {}
 
 
-ui.transparent = function()
-    local transparent = require("transparent")
-
-    transparent.setup({
-        enable = true
-    })
-end
-
-
 ui.devicons = function()
     local devicons = require("nvim-web-devicons")
 
@@ -63,7 +54,6 @@ ui.twilight = function()
     })
 end
 
-
 ui.zen_mode = function()
     local zen_mode = require("zen-mode")
 
@@ -81,7 +71,7 @@ ui.zen_mode = function()
             },
             twilight = { enabled = true },
             gitsigns = { enabled = false },
-            tmux = { enabled = true }
+            tmux = { enabled = false }
         },
     })
 end
@@ -90,12 +80,57 @@ end
 ui.lualine = function()
     local lualine = require("lualine")
 
+    local colors = {
+        darkgray = "#16161d",
+        gray = "#cccccc",
+        innerbg = nil,
+        outerbg = "#16161D",
+        normal = "#7e9cd8",
+        insert = "#98bb6c",
+        visual = "#ffa066",
+        replace = "#e46876",
+        command = "#e6c384",
+    }
+
     lualine.setup({
         options = {
             icons_enabled = true,
-            theme = "auto",
-            component_separators = { left = "", right = ""},
-            section_separators = { left = "", right = ""},
+            theme = {
+                inactive = {
+                    a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+                visual = {
+                    a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+                replace = {
+                    a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+                normal = {
+                    a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+                insert = {
+                    a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+                command = {
+                    a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
+                    b = { fg = colors.gray, bg = colors.outerbg },
+                    c = { fg = colors.gray, bg = colors.innerbg },
+                },
+            },
+            -- component_separators = { left = "", right = ""},
+            -- section_separators = { left = "", right = ""},
+            component_separators = { left = "", right = ""},
+            section_separators = { left = "", right = ""},
             disabled_filetypes = {
                 statusline = {},
                 winbar = {},
@@ -111,16 +146,16 @@ ui.lualine = function()
         },
         sections = {
             lualine_a = {},
-            lualine_b = {"mode", "branch", "diff", "diagnostics"},
-            lualine_c = {"filename"},
-            lualine_x = {"searchcount", "filetype"},
-            lualine_y = {"location"},
+            lualine_b = {},
+            lualine_c = { "filename", "diagnostics", "diff" },
+            lualine_x = { "location", "progress" },
+            lualine_y = {},
             lualine_z = {}
         },
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {"filename", "filetype"},
+            lualine_c = {"filename"},
             lualine_x = {},
             lualine_y = {},
             lualine_z = {}

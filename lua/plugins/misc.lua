@@ -107,6 +107,15 @@ misc.bufferline = function()
 end
 
 
+misc.gitsigns = function()
+    local gitsigns = require("gitsigns")
+
+    gitsigns.setup({
+        signcolumn = false
+    })
+end
+
+
 misc.treesitter = function()
     local nvim_treesitter = require("nvim-treesitter.configs")
 

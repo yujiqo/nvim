@@ -5,7 +5,7 @@ utils.setup_theme = function(setup_type, setup_name)
     if setup_type == "d" then
         return ('vim.cmd[[colorscheme %s]]'):format(setup_name)
     elseif setup_type == "c" then
-        return ('require("plugins.themes").%s()'):format(setup_name)
+        return ('require("plugins.theme").%s()'):format(setup_name)
     end
 end
 

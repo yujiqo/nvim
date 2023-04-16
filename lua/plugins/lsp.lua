@@ -9,30 +9,30 @@ lsp.lspconfig = function()
         border = "rounded"
     }
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {
-            border = "rounded"
-        }
-    )
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        {
-            border = "rounded"
-        }
-    )
-
-    vim.cmd[[highlight FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE]]
+    -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    --     vim.lsp.handlers.hover,
+    --     {
+    --         border = "rounded"
+    --     }
+    -- )
+    --
+    -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    --     vim.lsp.handlers.signature_help,
+    --     {
+    --         border = "rounded"
+    --     }
+    -- )
+    --
+    -- vim.cmd[[highlight FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE]]
 
     vim.diagnostic.config({
         -- virtual_text = {
         --     prefix = ""
         -- },
-        -- virtual_text = false,
+        virtual_text = false,
         underline = {Error=true},
         float = {
-            border = "rounded",
+            -- border = "rounded",
             header = "",
             focusable = false,
             prefix = function(_, _, _) return "" , "String" end,
@@ -84,10 +84,10 @@ lsp.cmp = function()
                 return item
             end
         },
-        window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered(),
-        },
+        -- window = {
+        --     completion = cmp.config.window.bordered(),
+        --     documentation = cmp.config.window.bordered(),
+        -- },
         snippet = {
             expand = function(args) luasnip.lsp_expand(args.body) end,
         },

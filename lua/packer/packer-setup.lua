@@ -9,14 +9,13 @@ require("packer").startup({
         use { "wbthomason/packer.nvim" }
 
 
-        --- themes ---
+        --- theme ---
         use { "rose-pine/neovim", as="rose-pine", config=setup_theme("c", "rose_pine") }
-        -- use { "sainnhe/gruvbox-material", config=setup_theme("c", "gruvbox_material") }
 
 
         --- ui ---
         use { "MunifTanjim/nui.nvim" }
-        use { "xiyaowong/nvim-transparent", config=setup_plugin("c", "transparent", "ui") }
+        use { "xiyaowong/nvim-transparent", config=setup_plugin("d", "transparent") }
         use { "kyazdani42/nvim-web-devicons", config=setup_plugin("c", "devicons", "ui") }
         use { "norcalli/nvim-colorizer.lua", config=setup_plugin("d", "colorizer") }
         use { "levouh/tint.nvim", config=setup_plugin("c", "tint", "ui") }
@@ -27,7 +26,7 @@ require("packer").startup({
 
 
         --- misc ---
-        use { "lewis6991/gitsigns.nvim", config=setup_plugin("d", "gitsigns") }
+        use { "lewis6991/gitsigns.nvim", config=setup_plugin("c", "gitsigns", "misc") }
         use { "nvim-treesitter/nvim-treesitter", config=setup_plugin("c", "treesitter", "misc") }
 
         use { "numToStr/Comment.nvim", config=setup_plugin("d", "Comment") }
@@ -39,7 +38,6 @@ require("packer").startup({
         use { "nvim-telescope/telescope-file-browser.nvim" }
 
         use { "cappyzawa/trim.nvim", config=setup_plugin("d", "trim") }
-        use { "windwp/nvim-ts-autotag", config=setup_plugin("d", "nvim-ts-autotag") }
         use { "christoomey/vim-tmux-navigator" }
         use { "szw/vim-maximizer" }
 

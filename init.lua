@@ -1,5 +1,6 @@
 --- plugins ---
-require("packer-setup")
+require("packer.bootstrap")
+require("packer.packer-setup")
 
 --- general ---
 require("options")
