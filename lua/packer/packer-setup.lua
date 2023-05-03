@@ -23,6 +23,7 @@ require("packer").startup({
         use { "folke/zen-mode.nvim", config=setup_plugin("c", "zen_mode", "ui") }
         use { "nvim-lualine/lualine.nvim", config=setup_plugin("c", "lualine", "ui") }
         use { "CosmicNvim/cosmic-ui", config=setup_plugin("c", "cosmic", "ui") }
+        use { "lukas-reineke/indent-blankline.nvim", config=setup_plugin("c", "indent_blankline", "ui") }
 
 
         --- misc ---
@@ -56,6 +57,6 @@ require("packer").startup({
         use { "saadparwaiz1/cmp_luasnip", after={"nvim-cmp"} }
 
         use { "kevinoid/vim-jsonc" }
-        use { "neoclide/vim-jsx-improve" }
+        use { "maxmellon/vim-jsx-pretty" }
     end
 })

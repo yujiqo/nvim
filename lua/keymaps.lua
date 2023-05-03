@@ -14,9 +14,12 @@ map("i", "<C-l>", "<Right>")
 map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")
 
+map("n", "<leader>tn", ":set nu!<CR>", { silent = true })
+map("n", "<leader>trn", ":set rnu!<CR>", { silent = true })
+
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
 
-map("n", "<leader>t", ":tabedit<CR>", { silent = true })
+map("n", "<leader>te", ":tabedit<CR>", { silent = true })
 map("n", "<leader>h", ":tabmove -<CR>", { silent = true })
 map("n", "<leader><Left>", ":tabmove -<CR>", { silent = true })
 map("n", "<leader>l", ":tabmove +<CR>", { silent = true })
@@ -24,7 +27,7 @@ map("n", "<leader><Right>", ":tabmove +<CR>", { silent = true })
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", { silent = true })
 map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { silent = true })
 
-map("n", "<leader>hd", ":Gitsigns diffthis<CR>", { silent = true })
+map("n", "<leader>sg", ":Gitsigns diffthis<CR>", { silent = true })
 
 map("n", "<leader>sv", "<C-w>v<C-w>w")
 map("n", "<leader>sh", "<C-w>s<C-w>w")
@@ -38,6 +41,7 @@ map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>
 map("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { silent = true })
 
 map("n","gd", vim.lsp.buf.definition)
+map("n","gt", vim.lsp.buf.type_definition)
 map("n", "K", vim.lsp.buf.signature_help)
 map("n", "gr", '<cmd>lua require("cosmic-ui").rename()<CR>')
 map("n", "<leader>sf", vim.diagnostic.open_float)
