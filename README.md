@@ -1,7 +1,4 @@
-## Something about
-It's a really simple config that's can be used for small and not small development with help of powerful ⚡ plugins for neovim.
-
-### Main plugins
+## Main plugins
 
 - [`packer.nvim`](https://github.com/wbthomason/packer.nvim) used as plugin manager
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as inproject search
@@ -22,6 +19,6 @@ and others for some additional functionality :)
 ```
 git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
 ```
-- Install [`packer.nvim`](https://github.com/wbthomason/packer.nvim)
+
 - In nvim run `:PackerSync` and restart
 - In nvim run `:checkhealth` and install some requirements from command output window
