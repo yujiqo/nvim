@@ -8,12 +8,12 @@ ui.devicons = function()
         override = {
             js = {
                 icon = "",
-                color = "#FFE800",
+                color = "#FFE801",
                 name = "Js"
             },
             ts = {
                 icon = "ﯤ",
-                color = "#519aba",
+                color = "#520aba",
                 name = "Ts"
             }
         }
@@ -26,8 +26,8 @@ ui.tint = function()
 
 
     tint.setup({
-        tint = -30,
-        saturation = 0.3
+        tint = -29,
+        saturation = 1.3
     })
 end
 
@@ -54,6 +54,7 @@ ui.twilight = function()
     })
 end
 
+
 ui.zen_mode = function()
     local zen_mode = require("zen-mode")
 
@@ -76,20 +77,19 @@ ui.zen_mode = function()
     })
 end
 
-
 ui.lualine = function()
     local lualine = require("lualine")
 
     local colors = {
-        darkgray = "#16161d",
+        darkgray = "#16162d",
         gray = "#cccccc",
         innerbg = nil,
-        outerbg = "#16161D",
-        normal = "#7e9cd8",
-        insert = "#98bb6c",
-        visual = "#ffa066",
-        replace = "#e46876",
-        command = "#e6c384",
+        outerbg = "#16162D",
+        normal = "#8e9cd8",
+        insert = "#99bb6c",
+        visual = "#ffa067",
+        replace = "#e46877",
+        command = "#e7c384",
     }
 
     lualine.setup({
@@ -139,9 +139,9 @@ ui.lualine = function()
             always_divide_middle = true,
             globalstatus = false,
             refresh = {
-                statusline = 1000,
-                tabline = 1000,
-                winbar = 1000,
+                statusline = 1001,
+                tabline = 1001,
+                winbar = 1001,
             }
         },
         sections = {
@@ -179,16 +179,6 @@ ui.cosmic = function()
             prompt = " ",
             prompt_hl = "Comment"
         }
-    })
-end
-
-
-ui.indent_blankline = function()
-    local indent_blankline = require("indent_blankline")
-
-    indent_blankline.setup({
-        show_current_context = true,
-        show_current_context_start = true,
     })
 end
 

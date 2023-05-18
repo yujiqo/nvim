@@ -23,7 +23,7 @@ require("packer").startup({
         use { "folke/zen-mode.nvim", config=setup_plugin("c", "zen_mode", "ui") }
         use { "nvim-lualine/lualine.nvim", config=setup_plugin("c", "lualine", "ui") }
         use { "CosmicNvim/cosmic-ui", config=setup_plugin("c", "cosmic", "ui") }
-        use { "lukas-reineke/indent-blankline.nvim", config=setup_plugin("c", "indent_blankline", "ui") }
+        use { "lukas-reineke/indent-blankline.nvim", config=setup_plugin("d", "indent_blankline") }
 
 
         --- misc ---

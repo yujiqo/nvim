@@ -104,8 +104,8 @@ lsp.cmp = function()
         },
         sources = cmp.config.sources {
             { name = "nvim_lsp" },
-            { name = "buffer" },
             { name = "path" },
+            { name = "buffer" },
             { name = "luasnip" }
         },
         -- experimental = {
