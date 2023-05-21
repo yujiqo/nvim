@@ -3,18 +3,18 @@ local utils = {}
 
 utils.setup_theme = function(setup_type, setup_name)
     if setup_type == "d" then
-        return ('vim.cmd[[colorscheme %s]]'):format(setup_name)
+        return load(('vim.cmd[[colorscheme %s]]'):format(setup_name))
     elseif setup_type == "c" then
-        return ('require("plugins.theme").%s()'):format(setup_name)
+        return load(('require("configs.theme").%s()'):format(setup_name))
     end
 end
 
 
 utils.setup_plugin = function(setup_type, setup_name, plugin_category)
     if setup_type == "d" then
-        return ('require("%s").setup()'):format(setup_name)
+        return load(('require("%s").setup()'):format(setup_name))
     elseif setup_type == "c" and plugin_category then
-        return ('require("plugins.%s").%s()'):format(plugin_category, setup_name)
+        return load(('require("configs.%s").%s()'):format(plugin_category, setup_name))
     end
 end
 

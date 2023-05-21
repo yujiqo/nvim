@@ -1,6 +1,6 @@
 --- plugins ---
-require("packer.bootstrap")
-require("packer.packer-setup")
+require("lazy.bootstrap")
+require("lazy.plugins")
 
 --- general ---
 require("options")
