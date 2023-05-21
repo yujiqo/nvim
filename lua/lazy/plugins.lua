@@ -95,7 +95,7 @@ lazy.setup({
     },
     {
         "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
+        lazy = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim"
