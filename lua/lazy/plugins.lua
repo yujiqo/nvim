@@ -33,7 +33,7 @@ lazy.setup({
     },
     {
         "levouh/tint.nvim",
-        lazy = true,
+        event = "BufRead",
         config = plugin("c", "tint", "ui")
     },
     {
@@ -70,12 +70,12 @@ lazy.setup({
     --- misc ---
     {
         "lewis6991/gitsigns.nvim",
-        lazy = false,
+        event = "BufRead",
         config = plugin("c", "gitsigns", "misc")
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "BufRead",
+        lazy = false,
         config = plugin("c", "treesitter", "misc")
     },
     {
@@ -90,7 +90,7 @@ lazy.setup({
     },
     {
         "akinsho/bufferline.nvim",
-        lazy = false,
+        event = "BufNew",
         config = plugin("c", "bufferline", "misc")
     },
     {
@@ -104,14 +104,14 @@ lazy.setup({
     },
     {
         "ggandor/lightspeed.nvim",
-        event = "BufRead",
+        lazy = false,
         dependencies = {
             "tpope/vim-repeat"
         }
     },
     {
         "cappyzawa/trim.nvim",
-        lazy = false,
+        event = "BufWrite",
         config = plugin("d", "trim")
     },
     { "christoomey/vim-tmux-navigator" },
@@ -129,7 +129,7 @@ lazy.setup({
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        event = "BufRead",
+        lazy = false,
         dependencies = {
             "neovim/nvim-lspconfig",
             "williamboman/mason.nvim"
@@ -138,7 +138,7 @@ lazy.setup({
     },
     {
         "hrsh7th/nvim-cmp",
-        event = "BufRead",
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             "L3MON4D3/LuaSnip",
             "hrsh7th/cmp-path",
