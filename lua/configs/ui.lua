@@ -27,7 +27,7 @@ ui.tint = function()
 
     tint.setup({
         tint = -29,
-        saturation = 1.3
+        saturation = 0.3
     })
 end
 
