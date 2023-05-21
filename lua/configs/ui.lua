@@ -13,7 +13,7 @@ ui.devicons = function()
             },
             ts = {
                 icon = "ﯤ",
-                color = "#520aba",
+                color = "#037ffc",
                 name = "Ts"
             }
         }
