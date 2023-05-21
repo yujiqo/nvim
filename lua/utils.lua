@@ -1,6 +1,25 @@
 local utils = {}
 
 
+utils.parsers = {
+    "bash", "c", "cpp", "cmake", "css",
+    "dockerfile", "gitignore", "html",
+    "htmldjango", "javascript", "json",
+    "jsonc", "lua", "make", "markdown",
+    "markdown_inline", "python", "regex",
+    "rust", "scss", "sql", "toml", "tsx",
+    "typescript", "vim", "yaml"
+}
+
+utils.servers = {
+    "bashls", "clangd", "cmake",
+    "cssls", "dockerls", "html",
+    "jsonls", "tsserver", "lua_ls",
+    "marksman", "pyright", "rust_analyzer",
+    "sqlls", "taplo", "tailwindcss"
+}
+
+
 utils.setup_theme = function(setup_type, setup_name)
     if setup_type == "d" then
         return load(('vim.cmd[[colorscheme %s]]'):format(setup_name))

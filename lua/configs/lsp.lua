@@ -57,8 +57,12 @@ lsp.lspconfig = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
+    local servers = require("utils").servers
+
     mason.setup({})
-    mason_lspconfig.setup({})
+    mason_lspconfig.setup({
+        ensure_installed = servers
+    })
 
     mason_lspconfig.setup_handlers({
         function(server)

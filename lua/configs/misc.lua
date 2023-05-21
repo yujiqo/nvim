@@ -118,8 +118,10 @@ end
 
 misc.treesitter = function()
     local nvim_treesitter = require("nvim-treesitter.configs")
+    local parsers = require("utils").parsers
 
     nvim_treesitter.setup({
+        ensure_installed = parsers,
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false
