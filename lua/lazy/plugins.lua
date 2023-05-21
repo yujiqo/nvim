@@ -14,6 +14,7 @@ lazy.setup({
         config = theme("c", "rose_pine")
     },
 
+
     --- ui ---
     {
         "xiyaowong/nvim-transparent",
@@ -65,6 +66,7 @@ lazy.setup({
         config = plugin("d", "indent_blankline")
     },
 
+
     --- misc ---
     {
         "lewis6991/gitsigns.nvim",
@@ -76,7 +78,6 @@ lazy.setup({
         event = "BufRead",
         config = plugin("c", "treesitter", "misc")
     },
-
     {
         "numToStr/Comment.nvim",
         lazy = true,
@@ -87,7 +88,6 @@ lazy.setup({
         event = "BufEnter",
         config = plugin("c", "todo_comments", "misc")
     },
-
     {
         "akinsho/bufferline.nvim",
         lazy = false,
@@ -102,7 +102,13 @@ lazy.setup({
         },
         config = plugin("c", "telescope", "misc")
     },
-
+    {
+        "ggandor/lightspeed.nvim",
+        event = "BufRead",
+        dependencies = {
+            "tpope/vim-repeat"
+        }
+    },
     {
         "cappyzawa/trim.nvim",
         lazy = false,
@@ -130,7 +136,6 @@ lazy.setup({
         },
         config = plugin("c", "lspconfig", "lsp")
     },
-
     {
         "hrsh7th/nvim-cmp",
         event = "BufRead",
@@ -144,7 +149,6 @@ lazy.setup({
         },
         config = plugin("c", "cmp", "lsp")
     },
-
     { "kevinoid/vim-jsonc" },
-    { "maxmellon/vim-jsx-pretty" },
+    { "maxmellon/vim-jsx-pretty" }
 })
