@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 map("n", "x", '"_x')
 map("n", "X", '"_X')
 map("n", "<C-a>", "ggVG")
+map("n", "<leader>=", "ggVG=gg")
 
 map("i", "<C-j>", "<Up>")
 map("i", "<C-k>", "<Down>")
