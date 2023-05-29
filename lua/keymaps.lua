@@ -50,7 +50,7 @@ map("n", "<leader>sf", vim.diagnostic.open_float)
 map("n", "[e", vim.diagnostic.goto_prev)
 map("n", "]e", vim.diagnostic.goto_next)
 
-map("n", "<leader>fb", ":Telescope file_browser<CR>", { silent = true })
+map("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true })
 map("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true })
 map("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
 map("n", "<leader>fg", ":Telescope live_grep<CR>", { silent = true })
