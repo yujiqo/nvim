@@ -7,11 +7,17 @@ local lazy = require("lazy")
 
 lazy.setup({
     --- theme ---
+    -- {
+    --     "rose-pine/neovim",
+    --     name = "rose-pine",
+    --     lazy = false,
+    --     config = theme("c", "rose_pine")
+    -- },
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
+        "catppuccin/nvim",
+        name = "catppuccin",
         lazy = false,
-        config = theme("c", "rose_pine")
+        config = theme("c", "catppuccin")
     },
 
 

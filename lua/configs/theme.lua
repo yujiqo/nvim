@@ -17,4 +17,31 @@ configs.rose_pine = function()
 end
 
 
+configs.catppuccin = function()
+    local catppuccin = require("catppuccin")
+
+    catppuccin.setup({
+        flavour = "mocha",
+        background = {
+            light = "latte",
+            dark = "mocha",
+        },
+        transparent_background = true,
+        comments = { "italic" },
+        color_overrides = {},
+        custom_highlights = {},
+        integrations = {
+            cmp = true,
+            gitsigns = true,
+            nvimtree = true,
+            telescope = true,
+            notify = false,
+            mini = false,
+        }
+    })
+
+    vim.cmd[[colorscheme catppuccin]]
+end
+
+
 return configs
