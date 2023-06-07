@@ -15,9 +15,9 @@ and others for some additional functionality :)
 ## Instalation
 - Backup your config if have
 - Install [`git`](https://git-scm.com/downloads) if haven't
-- Clone rep to `~/.config/nvim/` by following command:
+- Clone rep to `~/.config/` by following command:
 ```
-git -C ~/.config/nvim/ clone https://github.com/Imrvrs/nvim.git
+git -C ~/.config/ clone https://github.com/Imrvrs/nvim.git
 ```
 - Run nvim and after plugin installing restart it
 
