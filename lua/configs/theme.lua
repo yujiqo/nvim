@@ -21,13 +21,13 @@ configs.catppuccin = function()
     local catppuccin = require("catppuccin")
 
     catppuccin.setup({
-        flavour = "mocha",
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = {
             light = "latte",
             dark = "mocha",
         },
         transparent_background = true,
-        comments = { "italic" },
+        no_italic = true,
         color_overrides = {},
         custom_highlights = {},
         integrations = {
