@@ -22,7 +22,7 @@ opt.cursorlineopt = "number"
 opt.termguicolors = true
 opt.winblend = 0
 opt.wildoptions = "pum"
-opt.pumblend = 5
+opt.pumblend = 0
 
 
 --- clipboard ---

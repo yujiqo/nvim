@@ -9,30 +9,30 @@ lsp.lspconfig = function()
         border = "rounded"
     }
 
-    -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    --     vim.lsp.handlers.hover,
-    --     {
-    --         border = "rounded"
-    --     }
-    -- )
-    --
-    -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    --     vim.lsp.handlers.signature_help,
-    --     {
-    --         border = "rounded"
-    --     }
-    -- )
-    --
-    -- vim.cmd[[highlight FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE]]
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        {
+            border = "rounded"
+        }
+    )
+
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help,
+        {
+            border = "rounded"
+        }
+    )
+
+    vim.cmd[[highlight FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE]]
 
     vim.diagnostic.config({
         -- virtual_text = {
         --     prefix = ""
         -- },
-        virtual_text = false,
+        virtual_text = true,
         underline = {Error=true},
         float = {
-            -- border = "rounded",
+            border = "rounded",
             header = "",
             focusable = false,
             prefix = function(_, _, _) return "" , "String" end,
@@ -59,7 +59,11 @@ lsp.lspconfig = function()
 
     local servers = require("utils").servers
 
-    mason.setup({})
+    mason.setup({
+        ui = {
+            border = "rounded"
+        }
+    })
     mason_lspconfig.setup({
         ensure_installed = servers
     })
@@ -83,17 +87,21 @@ lsp.cmp = function()
             autocomplete = false
         },
         formatting = {
-            fields = { 'kind', 'abbr', 'menu' },
+            fields = { "kind", "abbr", "menu" },
             format = function(_, item)
                 item.kind = kind_icons[item.kind] or " "
                 item.menu = "  "
                 return item
             end
         },
-        -- window = {
-        --     completion = cmp.config.window.bordered(),
-        --     documentation = cmp.config.window.bordered(),
-        -- },
+        window = {
+            completion = {
+                border = "rounded",
+            },
+            documentation = {
+                border = "rounded",
+            }
+        },
         snippet = {
             expand = function(args) luasnip.lsp_expand(args.body) end,
         },
@@ -116,11 +124,11 @@ lsp.cmp = function()
             ghost_text = true
         }
     })
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
-            {{ name = 'path' }},
-            {{ name = 'cmdline' }}
+            {{ name = "path" }},
+            {{ name = "cmdline" }}
         )
     })
 end
