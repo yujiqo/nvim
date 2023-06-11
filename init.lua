@@ -1,6 +1,6 @@
 --- plugins ---
 require("lazy.bootstrap")
-require("lazy.plugins")
+require("lazy.setup")
 
 --- general ---
 require("options")

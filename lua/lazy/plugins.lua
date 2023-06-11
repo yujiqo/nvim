@@ -3,9 +3,7 @@ local utils = require("utils")
 local plugin = utils.setup_plugin
 local theme = utils.setup_theme
 
-local lazy = require("lazy")
-
-lazy.setup({
+local plugins = {
     --- theme ---
     -- {
     --     "rose-pine/neovim",
@@ -162,4 +160,7 @@ lazy.setup({
     },
     { "kevinoid/vim-jsonc" },
     { "maxmellon/vim-jsx-pretty" }
-})
+}
+
+
+return plugins
