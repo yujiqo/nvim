@@ -69,4 +69,34 @@ utils.todo_icons = {
 }
 
 
+utils.set_borders_color = function ()
+    local set_hl = vim.api.nvim_set_hl
+
+    set_hl(0, "FloatBorder", { bg="none", fg="#787878" })
+    set_hl(0, "NormalFloat", { bg="none", fg="#787878" })
+    set_hl(0, "TelescopeBorder", { bg="none", fg="#787878" })
+end
+
+
+utils.set_neovide_options = function ()
+    local g = vim.g
+    local o = vim.o
+    local map = vim.keymap.set
+
+    if g.neovide then
+        o.guifont = "SFMono Nerd Font:h16"
+
+        g.neovide_transparency = 0.9
+        g.neovide_scale_factor = 1.0
+
+        local change_scale_factor = function(delta)
+            g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+        end
+
+        map("n", "<C-=>", function() change_scale_factor(2.25) end)
+        map("n", "<C-->", function() change_scale_factor(2/1.25) end)
+    end
+end
+
+
 return utils

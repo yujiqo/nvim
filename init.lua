@@ -6,7 +6,6 @@ require("lazy.setup")
 require("options")
 require("keymaps")
 
---- neovide ---
-if vim.g.neovide then
-    require("neovide")
-end
+--- other ---
+require("utils").set_borders_color()
+require("utils").set_neovide_options()
