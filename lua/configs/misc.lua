@@ -79,7 +79,7 @@ misc.bufferline = function()
             modified_icon = "●",
             tab_size = 8,
             diagnostics = "nvim_lsp",
-            show_buffer_icons = true,
+            show_buffer_icons = false,
             show_buffer_close_icons = false,
             show_close_icon = false,
             show_tab_indicators = true,
@@ -135,13 +135,15 @@ misc.telescope = function()
 
     telescope.setup({
         defaults = {
-            prompt_prefix = "   ", selection_caret = " ",
+            initial_mode = "normal",
+            prompt_prefix = "   ", selection_caret = "  ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" }
         },
         extensions = {
             file_browser = {
-                hijack_netrw = true
+                hijack_netrw = true,
+                git_status = false
             }
         }
     })
