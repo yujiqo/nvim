@@ -24,9 +24,8 @@ end
 ui.tint = function()
     local tint = require("tint")
 
-
     tint.setup({
-        tint = -29,
+        tint = -30,
         saturation = 0.3
     })
 end
@@ -76,6 +75,7 @@ ui.zen_mode = function()
         },
     })
 end
+
 
 ui.lualine = function()
     local lualine = require("lualine")
@@ -147,15 +147,15 @@ ui.lualine = function()
         sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = { "filename", "branch" },
-            lualine_x = { "location", "progress" },
+            lualine_c = { "filename", "diagnostics", "branch", "diff" },
+            lualine_x = {  },
             lualine_y = {},
             lualine_z = {}
         },
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {"filename"},
+            lualine_c = { "filename" },
             lualine_x = {},
             lualine_y = {},
             lualine_z = {}
@@ -174,7 +174,7 @@ ui.cosmic = function()
                 style = "rounded",
                 title = " Rename ",
                 title_align = "left",
-                title_hl = "FloatBorder",
+                title_hl = "Normal",
             },
             prompt = " ",
             prompt_hl = "Comment"

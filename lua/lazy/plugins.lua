@@ -5,18 +5,18 @@ local theme = utils.setup_theme
 
 local plugins = {
     --- theme ---
-    -- {
-    --     "rose-pine/neovim",
-    --     name = "rose-pine",
-    --     lazy = false,
-    --     config = theme("c", "rose_pine")
-    -- },
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
+        "rose-pine/neovim",
+        name = "rose-pine",
         lazy = false,
-        config = theme("c", "catppuccin")
+        config = theme("c", "rose_pine")
     },
+    -- {
+    --     "catppuccin/nvim",
+    --     name = "catppuccin",
+    --     lazy = false,
+    --     config = theme("c", "catppuccin")
+    -- },
 
 
     --- ui ---
@@ -29,11 +29,6 @@ local plugins = {
         "kyazdani42/nvim-web-devicons",
         lazy = true,
         config = plugin("c", "devicons", "ui")
-    },
-    {
-        "norcalli/nvim-colorizer.lua",
-        event = "BufRead",
-        config = plugin("d", "colorizer")
     },
     {
         "levouh/tint.nvim",

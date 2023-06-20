@@ -34,7 +34,7 @@ opt.clipboard:prepend { "unnamed", "unnamedplus" } -- windows
 opt.laststatus = 2
 opt.showmode = true
 opt.showcmd = true
-opt.ruler = false
+opt.ruler = true
 
 
 --- file ---

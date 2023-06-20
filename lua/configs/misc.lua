@@ -111,7 +111,7 @@ misc.gitsigns = function()
     local gitsigns = require("gitsigns")
 
     gitsigns.setup({
-        signcolumn = true
+        signcolumn = false
     })
 end
 
