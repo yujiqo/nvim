@@ -44,7 +44,7 @@ opt.number = true
 opt.encoding = "utf-8"
 opt.fileformat = "unix"
 opt.scrolloff = 5
-opt.wrap = true
+opt.wrap = false
 opt.signcolumn = "yes:1"
 opt.backspace = "indent,eol,start"
 opt.fillchars = { eob = " " }
