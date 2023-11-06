@@ -42,7 +42,6 @@ opt.ruler = true
 -- opt.colorcolumn = { 79 }
 opt.number = true
 opt.encoding = "utf-8"
-opt.fileformat = "unix"
 opt.scrolloff = 5
 opt.wrap = false
 opt.signcolumn = "yes:1"

@@ -1,10 +1,10 @@
---- plugins ---
-require("lazy.bootstrap")
-require("lazy.setup")
-
 --- general ---
 require("options")
 require("keymaps")
+
+--- plugins ---
+require("lazy.bootstrap")
+require("lazy.setup")
 
 --- other ---
 require("utils").set_borders_color()

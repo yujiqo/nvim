@@ -11,13 +11,6 @@ local plugins = {
         lazy = false,
         config = theme("c", "rose_pine")
     },
-    -- {
-    --     "catppuccin/nvim",
-    --     name = "catppuccin",
-    --     lazy = false,
-    --     config = theme("c", "catppuccin")
-    -- },
-
 
     --- ui ---
     {
@@ -25,11 +18,6 @@ local plugins = {
         lazy = false,
         config = plugin("d", "transparent")
     },
-    -- {
-    --     "kyazdani42/nvim-web-devicons",
-    --     lazy = true,
-    --     config = plugin("c", "devicons", "ui")
-    -- },
     {
         "levouh/tint.nvim",
         event = "BufRead",
@@ -64,8 +52,7 @@ local plugins = {
         event = "BufRead",
         config = plugin("d", "indent_blankline")
     },
-
-
+        
     --- misc ---
     {
         "lewis6991/gitsigns.nvim",
@@ -79,7 +66,7 @@ local plugins = {
     },
     {
         "numToStr/Comment.nvim",
-        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
         config = plugin("d", "Comment")
     },
     {
@@ -115,7 +102,6 @@ local plugins = {
     },
     { "christoomey/vim-tmux-navigator" },
     { "szw/vim-maximizer" },
-
 
     --- lsp ---
     {
