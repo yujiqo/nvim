@@ -122,10 +122,7 @@ misc.treesitter = function()
 
     nvim_treesitter.setup({
         ensure_installed = parsers,
-        highlight = {
-            enable = true,
-            additional_vim_regex_highlighting = false
-        }
+        highlight = { enable = true }
     })
 end
 
@@ -135,7 +132,7 @@ misc.telescope = function()
 
     telescope.setup({
         defaults = {
-            prompt_prefix = "   ", selection_caret = "> ",
+            prompt_prefix = "   ", selection_caret = " ",
             sorting_strategy = "ascending",
             layout_config = { prompt_position = "top" }
         },

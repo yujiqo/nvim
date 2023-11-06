@@ -1,24 +1,24 @@
 local ui = {}
 
 
-ui.devicons = function()
-    local devicons = require("nvim-web-devicons")
-
-    devicons.setup({
-        override = {
-            js = {
-                icon = "",
-                color = "#FFE801",
-                name = "Js"
-            },
-            ts = {
-                icon = "ﯤ",
-                color = "#037ffc",
-                name = "Ts"
-            }
-        }
-    })
-end
+-- ui.devicons = function()
+--     local devicons = require("nvim-web-devicons")
+--
+--     devicons.setup({
+--         override = {
+--             js = {
+--                 icon = "",
+--                 color = "#FFE801",
+--                 name = "Js"
+--             },
+--             ts = {
+--                 icon = "ﯤ",
+--                 color = "#037ffc",
+--                 name = "Ts"
+--             }
+--         }
+--     })
+-- end
 
 
 ui.tint = function()
