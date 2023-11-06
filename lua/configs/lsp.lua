@@ -58,6 +58,7 @@ lsp.lspconfig = function()
     local mason_lspconfig = require("mason-lspconfig")
 
     local servers = require("utils").servers
+    local server_configs = require("utils").server_configs
 
     mason.setup({
         ui = {
@@ -70,7 +71,11 @@ lsp.lspconfig = function()
 
     mason_lspconfig.setup_handlers({
         function(server)
-            lspconfig[server].setup({})
+            if server_configs[server] == nil then
+                lspconfig[server].setup({})
+            else
+                lspconfig[server].setup(server_configs[server]())
+            end
         end
     })
 end

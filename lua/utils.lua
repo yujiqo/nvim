@@ -2,7 +2,7 @@ local utils = {}
 
 
 utils.parsers = {
-    "bash", "c", "cpp", "cmake", "css",
+    "astro", "bash", "c", "cpp", "cmake", "css",
     "dockerfile", "gitignore", "html",
     "htmldjango", "javascript", "json",
     "jsonc", "lua", "make", "markdown",
@@ -16,7 +16,36 @@ utils.servers = {
     "cssls", "dockerls", "html",
     "jsonls", "tsserver", "lua_ls",
     "marksman", "pyright", "rust_analyzer",
-    "sqlls", "taplo", "tailwindcss"
+    "sqlls", "taplo", "tailwindcss",
+    "emmet_ls"
+}
+
+utils.server_configs = {
+    lua_ls = function ()
+        return {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true
+                        }
+                    }
+                }
+            }
+        }
+    end,
+    emmet_ls = function ()
+        return {
+            filetypes = {
+                "html", "typescriptreact" , "javascriptreact",
+                "css", "sass", "scss", "less", "astro"
+            }
+        }
+    end
 }
 
 

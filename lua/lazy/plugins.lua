@@ -25,11 +25,11 @@ local plugins = {
         lazy = false,
         config = plugin("d", "transparent")
     },
-    {
-        "kyazdani42/nvim-web-devicons",
-        lazy = true,
-        config = plugin("c", "devicons", "ui")
-    },
+    -- {
+    --     "kyazdani42/nvim-web-devicons",
+    --     lazy = true,
+    --     config = plugin("c", "devicons", "ui")
+    -- },
     {
         "levouh/tint.nvim",
         event = "BufRead",
@@ -120,18 +120,9 @@ local plugins = {
     --- lsp ---
     {
         "williamboman/mason.nvim",
-        cmd = "Mason",
         dependencies = {
-            "neovim/nvim-lspconfig"
-        },
-        config = plugin("d", "mason")
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        lazy = false,
-        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
             "neovim/nvim-lspconfig",
-            "williamboman/mason.nvim"
         },
         config = plugin("c", "lspconfig", "lsp")
     },
@@ -143,7 +134,7 @@ local plugins = {
     },
     {
         "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-path",
             { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp" },
