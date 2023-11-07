@@ -148,4 +148,14 @@ misc.telescope = function()
 end
 
 
+misc.indent = function()
+    local indent = require("ibl")
+
+    indent.setup({
+        indent = { char = "│" },
+        scope = { enabled = false }
+    })
+end
+
+
 return misc

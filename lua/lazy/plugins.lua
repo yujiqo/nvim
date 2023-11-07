@@ -49,10 +49,11 @@ local plugins = {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         event = "BufRead",
-        config = plugin("d", "indent_blankline")
+        config = plugin("c", "indent", "misc")
     },
-        
+
     --- misc ---
     {
         "lewis6991/gitsigns.nvim",
