@@ -16,8 +16,8 @@ map("i", "<C-l>", "<Right>")
 map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")
 
-map("n", "<leader>tn", ":set nu!<CR>", { silent = true })
-map("n", "<leader>trn", ":set rnu!<CR>", { silent = true })
+map("n", ";", ":set nu!<CR>", { silent = true })
+map("n", "'", ":set rnu!<CR>", { silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
 
