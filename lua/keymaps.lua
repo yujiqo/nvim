@@ -13,10 +13,14 @@ map("i", "<C-k>", "<Down>")
 map("i", "<C-h>", "<Left>")
 map("i", "<C-l>", "<Right>")
 
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
 map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")
 
-map("n", ";", ":set nu!<CR>", { silent = true })
 map("n", "'", ":set rnu!<CR>", { silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
