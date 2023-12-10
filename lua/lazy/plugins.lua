@@ -55,11 +55,7 @@ local plugins = {
     },
 
     --- misc ---
-    {
-        "lewis6991/gitsigns.nvim",
-        event = "BufRead",
-        config = plugin("c", "gitsigns", "misc")
-    },
+    { "airblade/vim-gitgutter" },
     {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
