@@ -66,3 +66,7 @@ opt.ignorecase = true
 
 --- lsp ---
 opt.completeopt = "menu,menuone,noselect"
+
+
+--- disable gitgutter maps ---
+g.gitgutter_map_keys = false
