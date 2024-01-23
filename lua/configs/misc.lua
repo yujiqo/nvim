@@ -38,11 +38,11 @@ misc.bufferline = function()
                 fg = "#4c4c4c"
             },
             buffer_selected = {
-                fg = "#cccccc",
+                fg = "#ff6b6b",
                 italic = false
             },
             numbers_selected = {
-                fg = "#cccccc",
+                fg = "#ff6b6b",
                 italic = false
             },
             diagnostic_selected = {

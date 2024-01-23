@@ -49,11 +49,63 @@ utils.server_configs = {
 }
 
 
-utils.setup_theme = function(setup_type, setup_name)
-    if setup_type == "d" then
-        return load(('vim.cmd[[colorscheme %s]]'):format(setup_name))
-    elseif setup_type == "c" then
-        return load(('require("configs.theme").%s()'):format(setup_name))
+utils.colorschemes = {
+    light = "rose-pine-dawn",
+    dark = "rose-pine-moon"
+}
+
+
+utils.load_colorschemes = function()
+    local json = require("libs.json")
+    local file = io.open("__colorscheme__.json", "r")
+
+    if file then
+        local data = json.decode(file:read("*l"))
+
+        io.close(file)
+
+        vim.cmd(("colorscheme %s"):format(data.colorscheme))
+    else
+        file = io.open("__colorscheme__.json", "w")
+
+        local data = json.encode({
+            colorscheme = utils.colorschemes.dark
+        })
+
+        if file then
+            file:write(data)
+        end
+
+        io.close(file)
+
+        vim.cmd(("colorscheme %s"):format(utils.colorschemes.dark))
+    end
+end
+
+
+utils.toggle_colorscheme = function()
+    local json = require("libs.json")
+    local file = io.open("__colorscheme__.json", "r")
+
+    if file then
+        local data = json.decode(file:read("*l"))
+
+        io.close(file)
+
+        if data.colorscheme == utils.colorschemes.dark then
+            data.colorscheme = utils.colorschemes.light
+        else
+            data.colorscheme = utils.colorschemes.dark
+        end
+
+        file = io.open("__colorscheme__.json", "w")
+
+        if file then
+            file:write(json.encode(data))
+            io.close(file)
+        end
+
+        vim.cmd(("colorscheme %s"):format(data.colorscheme))
     end
 end
 

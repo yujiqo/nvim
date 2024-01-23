@@ -1,7 +1,6 @@
 local utils = require("utils")
 
 local plugin = utils.setup_plugin
-local theme = utils.setup_theme
 
 local plugins = {
     --- theme ---
@@ -9,7 +8,7 @@ local plugins = {
         "rose-pine/neovim",
         name = "rose-pine",
         lazy = false,
-        config = theme("c", "rose_pine")
+        config = plugin("c", "rose_pine", "theme")
     },
 
     --- ui ---

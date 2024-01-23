@@ -22,6 +22,7 @@ map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")
 
 map("n", "'", ":set rnu!<CR>", { silent = true })
+map("n", "<leader>tt", ":lua require('utils').toggle_colorscheme()<CR>", { silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
 

@@ -148,7 +148,7 @@ ui.lualine = function()
             lualine_a = {},
             lualine_b = {},
             lualine_c = { "filename", "diagnostics", "branch", "diff" },
-            lualine_x = {  },
+            lualine_x = {},
             lualine_y = {},
             lualine_z = {}
         },
