@@ -57,7 +57,7 @@ utils.colorschemes = {
 
 utils.load_colorschemes = function()
     local json = require("libs.json")
-    local file = io.open("__colorscheme__.json", "r")
+    local file = io.open("/home/yujiqo/.config/nvim/lua/__colorscheme__.json", "r")
 
     if file then
         local data = json.decode(file:read("*l"))
@@ -66,7 +66,7 @@ utils.load_colorschemes = function()
 
         vim.cmd(("colorscheme %s"):format(data.colorscheme))
     else
-        file = io.open("__colorscheme__.json", "w")
+        file = io.open("/home/yujiqo/.config/nvim/lua/__colorscheme__.json", "w")
 
         local data = json.encode({
             colorscheme = utils.colorschemes.dark
@@ -85,7 +85,7 @@ end
 
 utils.toggle_colorscheme = function()
     local json = require("libs.json")
-    local file = io.open("__colorscheme__.json", "r")
+    local file = io.open("/home/yujiqo/.config/nvim/lua/__colorscheme__.json", "r")
 
     if file then
         local data = json.decode(file:read("*l"))
@@ -98,7 +98,7 @@ utils.toggle_colorscheme = function()
             data.colorscheme = utils.colorschemes.dark
         end
 
-        file = io.open("__colorscheme__.json", "w")
+        file = io.open("/home/yujiqo/.config/nvim/lua/__colorscheme__.json", "w")
 
         if file then
             file:write(json.encode(data))
