@@ -82,7 +82,7 @@ ui.lualine = function()
 
     local colors = {
         darkgray = "#16162d",
-        gray = "#cccccc",
+        gray = "#858585",
         innerbg = nil,
         outerbg = "#16162D",
         normal = "#8e9cd8",
@@ -91,6 +91,8 @@ ui.lualine = function()
         replace = "#e46877",
         command = "#e7c384",
     }
+
+    local diagnostic_signs = require("utils").diagnostic_signs
 
     lualine.setup({
         options = {
@@ -147,7 +149,17 @@ ui.lualine = function()
         sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = { "filename", "diagnostics", "branch", "diff" },
+            lualine_c = { "filename", {
+                "diagnostics",
+                sources = { "nvim_lsp" },
+                sections = { 'error', 'warn', 'info', 'hint' },
+                symbols = {
+                    error = diagnostic_signs.Error,
+                    warn = diagnostic_signs.Warn,
+                    info = diagnostic_signs.Info,
+                    hint = diagnostic_signs.Hint
+                },
+            }, "branch", "diff" },
             lualine_x = {},
             lualine_y = {},
             lualine_z = {}

@@ -29,20 +29,20 @@ misc.bufferline = function()
     bufferline.setup({
         highlights = {
             fill = {
-                fg = "#4c4c4c"
+                fg = "#858585"
             },
             background = {
-                fg = "#4c4c4c"
+                fg = "#858585"
             },
             tab = {
-                fg = "#4c4c4c"
+                fg = "#858585"
             },
             buffer_selected = {
-                fg = "#ff6b6b",
+                fg = "#858585",
                 italic = false
             },
             numbers_selected = {
-                fg = "#ff6b6b",
+                fg = "#858585",
                 italic = false
             },
             diagnostic_selected = {
