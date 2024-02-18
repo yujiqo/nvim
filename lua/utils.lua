@@ -26,7 +26,7 @@ utils.server_configs = {
             settings = {
                 Lua = {
                     diagnostics = {
-                        globals = { "vim" },
+                        globals = { "vim", "api" },
                     },
                     workspace = {
                         library = {
@@ -119,6 +119,21 @@ utils.setup_plugin = function(setup_type, setup_name, plugin_category)
 end
 
 
+utils.create_augroups = function(definitions)
+    local api = vim.api
+
+    for group_name, definition in pairs(definitions) do
+        api.nvim_command("augroup "..group_name)
+        api.nvim_command("autocmd!")
+        for _, def in ipairs(definition) do
+            local command = table.concat(vim.tbl_flatten{"autocmd", def}, " ")
+            api.nvim_command(command)
+        end
+            api.nvim_command("augroup END")
+    end
+end
+
+
 utils.alpha = function()
     return string.format("%x", math.floor(255 * vim.g.neovide_transparency or 0.9))
 end
@@ -127,7 +142,7 @@ end
 utils.diagnostic_signs = {
     Error = " ",
     Warn  = " ",
-    Hint  = " ",
+    Hint  = " ",
     Info  = " ",
     other = "﫠"
 }
@@ -165,17 +180,21 @@ utils.set_neovide_options = function ()
     local map = vim.keymap.set
 
     if g.neovide then
-        o.guifont = "SFMono Nerd Font:h16"
+        o.guifont = "CaskaydiaMono Nerd Font:h14"
 
         g.neovide_transparency = 0.9
         g.neovide_scale_factor = 1.0
+        g.neovide_hide_mouse_when_typing = true
+        g.neovide_theme = "auto"
+        g.neovide_remember_window_size = true
+        g.neovide_cursor_vfx_mode = "ripple"
 
         local change_scale_factor = function(delta)
             g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
         end
 
-        map("n", "<C-=>", function() change_scale_factor(2.25) end)
-        map("n", "<C-->", function() change_scale_factor(2/1.25) end)
+        map("n", "<C-=>", function() change_scale_factor(1.25) end)
+        map("n", "<C-->", function() change_scale_factor(1/1.25) end)
     end
 end
 

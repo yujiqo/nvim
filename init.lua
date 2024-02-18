@@ -6,6 +6,9 @@ require("keymaps")
 require("lazy.bootstrap")
 require("lazy.setup")
 
+--- augroup ---
+require("augroup")
+
 --- other ---
 require("utils").load_colorschemes()
 require("utils").set_borders_color()
