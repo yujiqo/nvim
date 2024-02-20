@@ -72,7 +72,7 @@ local plugins = {
     },
     {
         "akinsho/bufferline.nvim",
-        event = "BufNew",
+        lazy = false,
         config = plugin("c", "bufferline", "misc")
     },
     {
