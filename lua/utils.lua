@@ -187,7 +187,6 @@ utils.set_neovide_options = function ()
         g.neovide_hide_mouse_when_typing = true
         g.neovide_theme = "auto"
         g.neovide_remember_window_size = true
-        g.neovide_cursor_vfx_mode = "ripple"
 
         local change_scale_factor = function(delta)
             g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
