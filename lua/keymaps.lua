@@ -8,8 +8,8 @@ map("n", "X", '"_X')
 map("n", "<C-a>", "ggVG")
 map("n", "<leader>=", "ggVG=gg")
 
-map("i", "<C-j>", "<Up>")
-map("i", "<C-k>", "<Down>")
+map("i", "<C-k>", "<Up>")
+map("i", "<C-j>", "<Down>")
 map("i", "<C-h>", "<Left>")
 map("i", "<C-l>", "<Right>")
 
