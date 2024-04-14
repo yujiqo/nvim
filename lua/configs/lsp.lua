@@ -98,6 +98,8 @@ lsp.lspconfig = function()
             map("n", "K", vim.lsp.buf.hover, opts)
             map("n", "<leader>rn", vim.lsp.buf.rename, opts)
             map("n", "<leader>rs", ":LspRestart<CR>", opts)
+            map("n", "<leader>ud", vim.diagnostic.hide, opts)
+            map("n", "<leader>ed", vim.diagnostic.show, opts)
         end
     })
 
