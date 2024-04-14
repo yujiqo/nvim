@@ -34,55 +34,73 @@ local plugins = {
     },
     {
         "nvim-lualine/lualine.nvim",
-        lazy = false,
         config = plugin("c", "lualine", "ui")
     },
     {
-        "CosmicNvim/cosmic-ui",
-        event = "BufRead",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim"
-        },
-        config = plugin("c", "cosmic", "ui")
+      "stevearc/dressing.nvim",
+      event = "VeryLazy",
+      config = plugin("d", "dressing")
     },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        event = "BufRead",
+        event = { "BufReadPre", "BufNewFile" },
         config = plugin("c", "indent", "misc")
     },
 
     --- misc ---
-    { "airblade/vim-gitgutter" },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = plugin("d", "gitsigns")
+    },
     {
         "nvim-treesitter/nvim-treesitter",
-        lazy = false,
+        event = { "BufReadPre", "BufNewFile" },
+        build = ":TSUpdate",
+        dependencies = {
+            "windwp/nvim-ts-autotag"
+        },
         config = plugin("c", "treesitter", "misc")
     },
     {
         "numToStr/Comment.nvim",
         event = { "BufReadPre", "BufNewFile" },
-        config = plugin("d", "Comment")
+        dependencies = {
+            "JoosepAlviste/nvim-ts-context-commentstring"
+        },
+        config = plugin("c", "comment", "misc")
     },
     {
         "folke/todo-comments.nvim",
-        event = "BufEnter",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = plugin("c", "todo_comments", "misc")
     },
     {
         "akinsho/bufferline.nvim",
-        lazy = false,
         config = plugin("c", "bufferline", "misc")
     },
     {
         "nvim-telescope/telescope.nvim",
-        lazy = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-file-browser.nvim"
+            "nvim-telescope/telescope-file-browser.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
         },
         config = plugin("c", "telescope", "misc")
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "folke/todo-comments.nvim" },
+        keys = {
+            { "<leader>xx", ":TroubleToggle<CR>" },
+            { "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>" },
+            { "<leader>xd", ":TroubleToggle document_diagnostics<CR>" },
+            { "<leader>xl", ":TroubleToggle loclist<CR>" },
+            { "<leader>xt", ":TodoTrouble<CR>" }
+        },
+        config = plugin("c", "trouble", "misc")
     },
     {
         "ggandor/lightspeed.nvim",
@@ -101,12 +119,21 @@ local plugins = {
 
     --- lsp ---
     {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            { "folke/neodev.nvim", opts = {} }
+        },
+        config = plugin("c", "lspconfig", "lsp")
+    },
+    {
         "williamboman/mason.nvim",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
-            "neovim/nvim-lspconfig",
+            "WhoIsSethDaniel/mason-tool-installer.nvim"
         },
-        config = plugin("c", "lspconfig", "lsp")
+        config = plugin("c", "mason", "lsp")
     },
     {
         "L3MON4D3/LuaSnip",
@@ -119,15 +146,22 @@ local plugins = {
         event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-path",
-            { "hrsh7th/cmp-nvim-lsp", module="cmp_nvim_lsp" },
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "saadparwaiz1/cmp_luasnip"
         },
         config = plugin("c", "cmp", "lsp")
     },
-    { "kevinoid/vim-jsonc" },
-    { "maxmellon/vim-jsx-pretty" }
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = plugin("c", "conform", "lsp")
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPre", "BufNewFile" },
+        config = plugin("c", "lint", "lsp")
+    }
 }
 
 

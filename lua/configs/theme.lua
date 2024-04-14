@@ -11,6 +11,8 @@ configs.rose_pine = function()
         disable_float_background = true,
         disable_italics = true,
     }
+
+    vim.cmd("colorscheme rose-pine-moon")
 end
 
 

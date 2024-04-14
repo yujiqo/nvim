@@ -22,7 +22,6 @@ map("n", "=", "<C-a>")
 map("n", "-", "<C-x>")
 
 map("n", "'", ":set rnu!<CR>", { silent = true })
-map("n", "<leader>tt", ":lua require('utils').toggle_colorscheme()<CR>", { silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { silent = true })
 
@@ -46,14 +45,6 @@ map("n", "<leader>sm", ":MaximizerToggle<CR>", { silent = true })
 
 map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>", { silent = true })
 map("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { silent = true })
-
-map("n","gd", vim.lsp.buf.definition)
-map("n","gt", vim.lsp.buf.type_definition)
-map("n", "K", vim.lsp.buf.signature_help)
-map("n", "gr", '<cmd>lua require("cosmic-ui").rename()<CR>')
-map("n", "<leader>sf", vim.diagnostic.open_float)
-map("n", "[e", vim.diagnostic.goto_prev)
-map("n", "]e", vim.diagnostic.goto_next)
 
 map("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true })
 map("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true })

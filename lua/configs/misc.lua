@@ -34,15 +34,15 @@ misc.bufferline = function()
             background = {
                 fg = "#858585"
             },
+            buffer_selected = {
+                fg = "#cccccc",
+                italic = false
+            },
             tab = {
                 fg = "#858585"
             },
-            buffer_selected = {
-                fg = "#858585",
-                italic = false
-            },
-            numbers_selected = {
-                fg = "#858585",
+            tab_selected = {
+                fg = "#cccccc",
                 italic = false
             },
             diagnostic_selected = {
@@ -122,7 +122,8 @@ misc.treesitter = function()
 
     nvim_treesitter.setup({
         ensure_installed = parsers,
-        highlight = { enable = true }
+        highlight = { enable = true },
+        autotag = { enable = true }
     })
 end
 
@@ -145,6 +146,17 @@ misc.telescope = function()
     })
 
     telescope.load_extension("file_browser")
+    telescope.load_extension("fzf")
+end
+
+
+misc.trouble = function()
+    local trouble = require("trouble")
+
+    trouble.setup({
+        icons = false,
+        use_diagnostic_signs = true
+    })
 end
 
 
@@ -154,6 +166,16 @@ misc.indent = function()
     indent.setup({
         indent = { char = "│" },
         scope = { enabled = false }
+    })
+end
+
+
+misc.comment = function()
+    local comment = require("Comment")
+    local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+
+    comment.setup({
+        pre_hook = ts_context_commentstring.create_pre_hook()
     })
 end
 

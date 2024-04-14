@@ -82,7 +82,7 @@ ui.lualine = function()
 
     local colors = {
         darkgray = "#16162d",
-        gray = "#858585",
+        gray = "#cccccc",
         innerbg = nil,
         outerbg = "#16162D",
         normal = "#8e9cd8",
@@ -171,25 +171,6 @@ ui.lualine = function()
             lualine_x = {},
             lualine_y = {},
             lualine_z = {}
-        }
-    })
-end
-
-
-ui.cosmic = function()
-    local cosmic = require("cosmic-ui")
-
-    cosmic.setup({
-        rename = {
-            border = {
-                highlight = "FloatBorder",
-                style = "rounded",
-                title = " Rename ",
-                title_align = "left",
-                title_hl = "Normal",
-            },
-            prompt = " ",
-            prompt_hl = "Comment"
         }
     })
 end

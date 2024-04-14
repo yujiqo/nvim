@@ -10,6 +10,5 @@ require("lazy.setup")
 require("augroup")
 
 --- other ---
-require("utils").load_colorschemes()
 require("utils").set_borders_color()
 require("utils").set_neovide_options()
