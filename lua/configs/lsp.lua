@@ -185,7 +185,6 @@ lsp.conform = function()
     local conform = require("conform")
 
     conform.setup({
-        rust = { "rustfmt" },
         c = { "clang-format" },
         cpp = { "clang-format" },
         lua = { "stylua" },
