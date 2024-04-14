@@ -1,41 +1,47 @@
-## Main plugins
+# Main plugins
 
-- [`lazy.nvim`](https://github.com/folke/lazy.nvim) used as plugin manager
-- [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) used as inproject search
-- [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) used as syntax highlighter
-- [`mason.nvim`](https://github.com/williamboman/mason.nvim) used as lsp manager
-- [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) used as completion engine
+- [`lazy.nvim`](https://github.com/folke/lazy.nvim) as a plugin manager
+- [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) as an in-project file, diagnostic, todo, etc search
+- [`trouble.nvim`](https://github.com/folke/trouble.nvim) as a workspace diagnostic and todo search
+- [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) as a syntax highlighter
+- [`mason.nvim`](https://github.com/williamboman/mason.nvim) as a lsp, formatter, linter manager
+- [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) as a completion engine
 
-and others for some additional functionality :)
-
-
-<br>
-
-
-## How to add language support
-### 1. Go to ./lua/utils.lua
-![Screenshot_50](https://github.com/yujiqo/nvim/assets/92727678/c46a6081-b418-435d-a1da-529929cdd681)
-
-### 2. Add parser. Find parser name [there](https://github.com/nvim-treesitter/nvim-treesitter)
-![Screenshot_46](https://github.com/yujiqo/nvim/assets/92727678/5c56131b-1866-432e-b467-a51ada2b4591)
-
-### 3. Add language server. Find server name [there](https://github.com/williamboman/mason.nvim)
-![Screenshot_48](https://github.com/yujiqo/nvim/assets/92727678/f499fea0-d9ea-4cdc-9a39-ae7a9c9c3518)
-
-### 4. Add config for language server (optional) if you don't, server will get default config - {}
-![Screenshot_49](https://github.com/yujiqo/nvim/assets/92727678/1451690e-0247-46a0-84c7-94e9563cd462)
+and others for other cool functionality :D
 
 
 <br>
 
 
-## Instalation
-- Backup your config if have
-- Install [`git`](https://git-scm.com/downloads) if haven't
+# How to add a language support
+## 1. Go to `./lua/utils.lua`
+
+## 2. Add parser. You can find parser name [here](https://github.com/nvim-treesitter/nvim-treesitter)
+![image](https://github.com/yujiqo/nvim/assets/92727678/4909a174-4918-4fe6-b792-19d0c6b504a2)
+
+## 3. Add language server. You can find server name [here](https://github.com/williamboman/mason.nvim)
+![image](https://github.com/yujiqo/nvim/assets/92727678/a7f9daf7-b4d9-4d19-8068-fe7bf25dd674)
+
+### You can add server config as well. it's not necessary though so if you don't, server will get a default config - {}
+![image](https://github.com/yujiqo/nvim/assets/92727678/981210d0-d1d2-487d-a8c3-0680a304220d)
+
+### 4. Add one or more formatters and linters (optional). You can find formatter name [here](https://github.com/stevearc/conform.nvim) and linter name [here](https://github.com/mfussenegger/nvim-lint)
+![image](https://github.com/yujiqo/nvim/assets/92727678/f15bab63-1ea1-4c7f-9070-70240fe22f18)
+
+### Don't forget to specify formatter/linter to a filetype there: `./lua/utils/lsp.lua`!
+![image](https://github.com/yujiqo/nvim/assets/92727678/f021e926-9098-478c-a332-4fbebb248cc8)
+![image](https://github.com/yujiqo/nvim/assets/92727678/6025979e-31ed-43f1-916a-7df32a752adb)
+
+
+<br>
+
+
+# Instalation
+- Backup your config if you have
 - Clone rep to `~/.config/` by following command:
 ```
 git -C ~/.config/ clone https://github.com/yujiqo/nvim.git
 ```
-- Run nvim and after plugin installing restart it
+- Run nvim and wait until all of plugins are installed then restart nvim
 
 That's it!
