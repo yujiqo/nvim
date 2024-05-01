@@ -10,5 +10,8 @@ create_augroups({
         { "BufEnter", "*", "highlight GitSignsAdd guibg=NONE" },
         { "BufEnter", "*", "highlight GitSignsChange guibg=NONE" },
         { "BufEnter", "*", "highlight GitSignsDelete guibg=NONE" }
+    },
+    transparent_tabline = {
+        { "BufEnter", "*", "highlight TabLine guibg=NONE" }
     }
 })

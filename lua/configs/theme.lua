@@ -1,6 +1,15 @@
 local configs = {}
 
 
+configs.komau = function()
+    local g = vim.g
+
+    g.komau_italic = 0
+
+    vim.cmd("colorscheme komau")
+end
+
+
 configs.rose_pine = function()
     local rose_pine = require("rose-pine");
 
@@ -13,31 +22,6 @@ configs.rose_pine = function()
     }
 
     vim.cmd("colorscheme rose-pine-moon")
-end
-
-
-configs.catppuccin = function()
-    local catppuccin = require("catppuccin")
-
-    catppuccin.setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = {
-            light = "latte",
-            dark = "mocha",
-        },
-        transparent_background = true,
-        no_italic = true,
-        color_overrides = {},
-        custom_highlights = {},
-        integrations = {
-            cmp = true,
-            gitsigns = true,
-            nvimtree = true,
-            telescope = true,
-            notify = false,
-            mini = false,
-        }
-    })
 end
 
 

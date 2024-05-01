@@ -86,11 +86,9 @@ misc.bufferline = function()
             show_duplicate_prefix = true,
             separator_style = { "", "" },
             always_show_bufferline = false,
-
             indicator = {
                 style = "none"
             },
-
             offsets = {
                 {
                     filetype = "NvimTree",
@@ -98,7 +96,6 @@ misc.bufferline = function()
                     text_align = "center"
                 }
             },
-
             hover = {
                 enabled = false
             }
@@ -164,7 +161,7 @@ misc.indent = function()
     local indent = require("ibl")
 
     indent.setup({
-        indent = { char = "│" },
+        indent = { char = "▏" },
         scope = { enabled = false }
     })
 end

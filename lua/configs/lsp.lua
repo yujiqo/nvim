@@ -98,8 +98,8 @@ lsp.lspconfig = function()
             map("n", "K", vim.lsp.buf.hover, opts)
             map("n", "<leader>rn", vim.lsp.buf.rename, opts)
             map("n", "<leader>rs", ":LspRestart<CR>", opts)
-            map("n", "<leader>ud", vim.diagnostic.hide, opts)
-            map("n", "<leader>ed", vim.diagnostic.show, opts)
+            -- map("n", "<leader>ud", vim.diagnostic.hide, opts)
+            -- map("n", "<leader>ed", vim.diagnostic.show, opts)
         end
     })
 
@@ -217,12 +217,12 @@ lsp.lint = function()
     local lint = require("lint")
 
     lint.linters_by_ft = {
-        cpp = { "cpplint" },
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        python = { "pylint" }
+        -- cpp = { "cpplint" },
+        -- javascript = { "eslint_d" },
+        -- typescript = { "eslint_d" },
+        -- javascriptreact = { "eslint_d" },
+        -- typescriptreact = { "eslint_d" },
+        -- python = { "pylint" }
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -3,12 +3,17 @@ local utils = require("utils")
 local plugin = utils.setup_plugin
 
 local plugins = {
-    --- theme ---
+    -- theme ---
+    {
+        "ntk148v/komau.vim",
+        lazy = false,
+        config = plugin("c", "komau", "theme")
+    },
     {
         "rose-pine/neovim",
         name = "rose-pine",
         lazy = false,
-        config = plugin("c", "rose_pine", "theme")
+        -- config = plugin("c", "rose_pine", "theme")
     },
 
     --- ui ---
