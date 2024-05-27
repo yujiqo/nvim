@@ -28,7 +28,7 @@ and others for other cool functionality :D
 ### 4. Add one or more formatters and linters (optional). You can find formatter name [here](https://github.com/stevearc/conform.nvim) and linter name [here](https://github.com/mfussenegger/nvim-lint)
 ![image](https://github.com/yujiqo/nvim/assets/92727678/f15bab63-1ea1-4c7f-9070-70240fe22f18)
 
-### Don't forget to specify formatter/linter to a filetype there: `./lua/utils/lsp.lua`!
+### Don't forget to specify formatter/linter to a filetype there: `./lua/configs/lsp.lua`!
 ![image](https://github.com/yujiqo/nvim/assets/92727678/f021e926-9098-478c-a332-4fbebb248cc8)
 ![image](https://github.com/yujiqo/nvim/assets/92727678/6025979e-31ed-43f1-916a-7df32a752adb)
 
