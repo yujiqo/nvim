@@ -13,5 +13,8 @@ create_augroups({
     },
     transparent_tabline = {
         { "BufEnter", "*", "highlight TabLine guibg=NONE" }
+    },
+    correct_cursorlinenr = {
+        { "BufEnter", "*", "highlight CursorLineNr guifg=#cccccc" }
     }
 })
