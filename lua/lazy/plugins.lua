@@ -5,15 +5,21 @@ local plugin = utils.setup_plugin
 local plugins = {
     -- theme ---
     {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        -- config = plugin("c", "catppuccin", "theme")
+    },
+    {
         "ntk148v/komau.vim",
         lazy = false,
-        config = plugin("c", "komau", "theme")
+        -- config = plugin("c", "komau", "theme")
     },
     {
         "rose-pine/neovim",
         name = "rose-pine",
         lazy = false,
-        -- config = plugin("c", "rose_pine", "theme")
+        config = plugin("c", "rose_pine", "theme")
     },
 
     --- ui ---
@@ -21,6 +27,11 @@ local plugins = {
         "xiyaowong/nvim-transparent",
         lazy = false,
         config = plugin("d", "transparent")
+    },
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = false,
+        config = plugin("c", "devicons", "ui")
     },
     {
         "levouh/tint.nvim",
@@ -38,9 +49,13 @@ local plugins = {
         config = plugin("c", "zen_mode", "ui")
     },
     {
-        "nvim-lualine/lualine.nvim",
-        config = plugin("c", "lualine", "ui")
+        "tamton-aquib/staline.nvim",
+        config = plugin("c", "staline", "ui")
     },
+    -- {
+    --     "nvim-lualine/lualine.nvim",
+    --     config = plugin("c", "lualine", "ui")
+    -- },
     {
       "stevearc/dressing.nvim",
       event = "VeryLazy",
@@ -90,8 +105,7 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-file-browser.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+            "nvim-telescope/telescope-file-browser.nvim"
         },
         config = plugin("c", "telescope", "misc")
     },
@@ -119,7 +133,8 @@ local plugins = {
         event = "BufWrite",
         config = plugin("d", "trim")
     },
-    { "christoomey/vim-tmux-navigator" },
+    { "Darazaki/indent-o-matic" },
+    -- { "christoomey/vim-tmux-navigator" },
     { "szw/vim-maximizer" },
 
     --- lsp ---

@@ -143,7 +143,6 @@ misc.telescope = function()
     })
 
     telescope.load_extension("file_browser")
-    telescope.load_extension("fzf")
 end
 
 
@@ -160,8 +159,10 @@ end
 misc.indent = function()
     local indent = require("ibl")
 
+
+
     indent.setup({
-        indent = { char = "▏" },
+        indent = { char = "▏", highlight = "LineNr" },
         scope = { enabled = false }
     })
 end

@@ -87,7 +87,7 @@ lsp.lspconfig = function()
             local opts = { buffer = ev.buf, silent = true }
 
             map("n","gD", vim.lsp.buf.declaration, opts)
-            map("n","gt", ":Telescope lsp_definitions<CR>", opts)
+            map("n","gd", ":Telescope lsp_definitions<CR>", opts)
             map("n","gt", ":Telescope lsp_type_definitions<CR>", opts)
             map("n","gi", ":Telescope lsp_implementations<CR>", opts)
             map("n","gr", ":Telescope lsp_references<CR>", opts)
@@ -234,7 +234,7 @@ lsp.lint = function()
         end
     })
 
-    vim.keymap.set("n", "<leader>l", function()
+    vim.keymap.set("n", "<leader>tl", function()
         lint.try_lint()
     end)
 end
