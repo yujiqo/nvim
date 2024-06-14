@@ -90,7 +90,7 @@ end
 utils.diagnostic_signs = {
     Error = " ",
     Warn  = " ",
-    Hint  = " ",
+    Hint  = "󱧢 ",
     Info  = " ",
     other = "﫠"
 }
