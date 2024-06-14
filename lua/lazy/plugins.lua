@@ -1,187 +1,166 @@
-local utils = require("utils")
-
-local plugin = utils.setup_plugin
+local get_config = function(setup_type, setup_name, plugin_category)
+  if setup_type == "d" then
+    return load(('require("%s").setup()'):format(setup_name))
+  elseif setup_type == "c" and plugin_category then
+    return load(('require("configs.%s").%s()'):format(plugin_category, setup_name))
+  end
+end
 
 local plugins = {
-    -- theme ---
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-        -- config = plugin("c", "catppuccin", "theme")
-    },
-    {
-        "ntk148v/komau.vim",
-        lazy = false,
-        -- config = plugin("c", "komau", "theme")
-    },
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        lazy = false,
-        config = plugin("c", "rose_pine", "theme")
-    },
+  -- colorschemes
+  {
+    "ntk148v/komau.vim",
+    lazy = false,
+    priority = 1000,
+    -- config = get_config("c", "komau", "clrsch")
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    priority = 1000,
+    config = get_config("c", "rose_pine", "clrsch")
+  },
 
-    --- ui ---
-    {
-        "xiyaowong/nvim-transparent",
-        lazy = false,
-        config = plugin("d", "transparent")
-    },
-    {
-        "nvim-tree/nvim-web-devicons",
-        lazy = false,
-        config = plugin("c", "devicons", "ui")
-    },
-    {
-        "levouh/tint.nvim",
-        event = "BufRead",
-        config = plugin("c", "tint", "ui")
-    },
-    {
-        "folke/twilight.nvim",
-        lazy = true,
-        config = plugin("c", "twilight", "ui")
-    },
-    {
-        "folke/zen-mode.nvim",
-        event = "BufEnter",
-        config = plugin("c", "zen_mode", "ui")
-    },
-    {
-        "tamton-aquib/staline.nvim",
-        config = plugin("c", "staline", "ui")
-    },
-    -- {
-    --     "nvim-lualine/lualine.nvim",
-    --     config = plugin("c", "lualine", "ui")
-    -- },
-    {
-      "stevearc/dressing.nvim",
-      event = "VeryLazy",
-      config = plugin("d", "dressing")
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        event = { "BufReadPre", "BufNewFile" },
-        config = plugin("c", "indent", "misc")
-    },
+  -- visual
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = get_config("d", "gitsigns")
+  },
+  {
+    "xiyaowong/nvim-transparent",
+    lazy = false,
+    config = get_config("d", "transparent")
+  },
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    config = get_config("d", "dressing")
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    config = get_config("c", "devicons", "visual")
+  },
+  {
+    "levouh/tint.nvim",
+    lazy = false,
+    config = get_config("c", "tint", "visual")
+  },
+  {
+    "folke/twilight.nvim",
+    lazy = false,
+    config = get_config("c", "twilight", "visual")
+  },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = get_config("c", "zen_mode", "visual")
+  },
+  {
+    "tamton-aquib/staline.nvim",
+    lazy = false,
+    config = get_config("c", "staline", "visual")
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = { "BufReadPre", "BufNewFile" },
+    config = get_config("c", "indent", "visual")
+  },
 
-    --- misc ---
-    {
-        "lewis6991/gitsigns.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = plugin("d", "gitsigns")
+  -- functional
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
+    build = ":TSUpdate",
+    dependencies = { "windwp/nvim-ts-autotag" },
+    config = get_config("c", "treesitter", "func")
+  },
+  {
+    "numToStr/Comment.nvim",
+    lazy = true,
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+    config = get_config("c", "comment", "func")
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = get_config("c", "todo_comments", "func")
+  },
+  {
+    "akinsho/bufferline.nvim",
+    keys = "<leader>te",
+    config = get_config("c", "bufferline", "func")
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim"
     },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPre", "BufNewFile" },
-        build = ":TSUpdate",
-        dependencies = {
-            "windwp/nvim-ts-autotag"
-        },
-        config = plugin("c", "treesitter", "misc")
-    },
-    {
-        "numToStr/Comment.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring"
-        },
-        config = plugin("c", "comment", "misc")
-    },
-    {
-        "folke/todo-comments.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = plugin("c", "todo_comments", "misc")
-    },
-    {
-        "akinsho/bufferline.nvim",
-        config = plugin("c", "bufferline", "misc")
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-file-browser.nvim"
-        },
-        config = plugin("c", "telescope", "misc")
-    },
-    {
-        "folke/trouble.nvim",
-        dependencies = { "folke/todo-comments.nvim" },
-        keys = {
-            { "<leader>xx", ":TroubleToggle<CR>" },
-            { "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>" },
-            { "<leader>xd", ":TroubleToggle document_diagnostics<CR>" },
-            { "<leader>xl", ":TroubleToggle loclist<CR>" },
-            { "<leader>xt", ":TodoTrouble<CR>" }
-        },
-        config = plugin("c", "trouble", "misc")
-    },
-    {
-        "ggandor/lightspeed.nvim",
-        lazy = false,
-        dependencies = {
-            "tpope/vim-repeat"
-        }
-    },
-    {
-        "cappyzawa/trim.nvim",
-        event = "BufWrite",
-        config = plugin("d", "trim")
-    },
-    { "Darazaki/indent-o-matic" },
-    -- { "christoomey/vim-tmux-navigator" },
-    { "szw/vim-maximizer" },
+    config = get_config("c", "telescope", "func")
+  },
+  {
+    "ggandor/lightspeed.nvim",
+    dependencies = { "tpope/vim-repeat" }
+  },
+  {
+    "cappyzawa/trim.nvim",
+    event = "BufWrite",
+    config = get_config("d", "trim")
+  },
+  { "szw/vim-maximizer" },
+  { "Darazaki/indent-o-matic" },
 
-    --- lsp ---
-    {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            { "folke/neodev.nvim", opts = {} }
-        },
-        config = plugin("c", "lspconfig", "lsp")
+  -- language support
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      { "folke/neodev.nvim", opts = {} }
     },
-    {
-        "williamboman/mason.nvim",
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim"
-        },
-        config = plugin("c", "mason", "lsp")
+    config = get_config("c", "lspconfig", "langsup")
+  },
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
     },
-    {
-        "L3MON4D3/LuaSnip",
-        event = { "InsertEnter", "CmdlineEnter" },
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = plugin("c", "snippets", "lsp")
+    config = get_config("c", "mason", "langsup")
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = get_config("c", "snippets", "langsup")
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip"
     },
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-cmdline",
-            "saadparwaiz1/cmp_luasnip"
-        },
-        config = plugin("c", "cmp", "lsp")
-    },
-    {
-        "stevearc/conform.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = plugin("c", "conform", "lsp")
-    },
-    {
-        "mfussenegger/nvim-lint",
-        event = { "BufReadPre", "BufNewFile" },
-        config = plugin("c", "lint", "lsp")
-    }
+    config = get_config("c", "cmp", "langsup")
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = get_config("c", "conform", "langsup")
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = get_config("c", "lint", "langsup")
+  }
 }
 
 

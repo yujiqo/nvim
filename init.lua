@@ -1,14 +1,8 @@
---- general ---
 require("options")
-require("keymaps")
 
---- plugins ---
 require("lazy.bootstrap")
 require("lazy.setup")
 
---- augroup ---
-require("augroup")
-
---- other ---
-require("utils").set_borders_color()
-require("utils").set_neovide_options()
+require("keymaps")
+require("augroups")
+require("highlights")

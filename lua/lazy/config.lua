@@ -1,8 +1,5 @@
 local config = {
-    ui = {
-        border = "rounded"
-    }
+  ui = { border = "rounded" }
 }
-
 
 return config
