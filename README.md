@@ -2,7 +2,6 @@
 
 - [`lazy.nvim`](https://github.com/folke/lazy.nvim) as a plugin manager
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) as an in-project file, diagnostic, todo, etc search
-- [`trouble.nvim`](https://github.com/folke/trouble.nvim) as a workspace diagnostic and todo search
 - [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) as a syntax highlighter
 - [`mason.nvim`](https://github.com/williamboman/mason.nvim) as a lsp, formatter, linter manager
 - [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) as a completion engine
