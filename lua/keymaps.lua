@@ -45,11 +45,13 @@ map("n", "<leader>sg", ":Gitsigns diffthis<CR>", { silent = true })
 map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>", { silent = true })
 map("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { silent = true })
 
-map("n", "<leader>b", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true })
+-- map("n", "<leader>b", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true })
 map("n", "<leader>fb", ":Telescope buffers<CR>", { silent = true })
 map("n", "<leader>ft", ":TodoTelescope<CR>", { silent = true })
 map("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
 map("n", "<leader>fg", ":Telescope live_grep<CR>", { silent = true })
 map("n", "<leader>fs", ":Telescope grep_string<CR>", { silent = true })
+
+map("n", "<leader>b", ":Neotree toggle<CR>", { silent = true })
 
 map("n", "<leader>z", ":ZenMode<CR>", { silent = true })

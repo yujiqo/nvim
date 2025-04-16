@@ -72,7 +72,11 @@ M.lspconfig = function()
   mason_lspconfig.setup_handlers {
     function(server)
       if server_configs[server] == nil then
-        lspconfig[server].setup {}
+        if server == "tsserver" then
+          lspconfig["ts_ls"].setup {}
+        else
+          lspconfig[server].setup {}
+        end
       else
         lspconfig[server].setup(server_configs[server]())
       end
@@ -163,12 +167,12 @@ M.lint = function()
   local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
   lint.linters_by_ft = {
-    cpp = { "cpplint" },
-    javascript = { "eslint_d" },
-    typescript = { "eslint_d" },
-    javascriptreact = { "eslint_d" },
-    typescriptreact = { "eslint_d" },
-    python = { "pylint" }
+    -- cpp = { "cpplint" },
+    -- javascript = { "eslint_d" },
+    -- typescript = { "eslint_d" },
+    -- javascriptreact = { "eslint_d" },
+    -- typescriptreact = { "eslint_d" },
+    -- python = { "pylint" }
   }
 
   vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

@@ -16,7 +16,7 @@ M.servers = {
   "jsonls", "tsserver", "lua_ls",
   "marksman", "pyright", "rust_analyzer",
   "sqlls", "taplo", "tailwindcss",
-  "emmet_ls"
+  "emmet_ls", "jinja_lsp"
 }
 
 M.tools = {
@@ -29,6 +29,17 @@ M.tools = {
 }
 
 M.server_configs = {
+  pyright = function ()
+    return {
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = "off"
+          }
+        }
+      }
+    }
+  end,
   lua_ls = function ()
     return {
       settings = {
@@ -49,11 +60,11 @@ M.server_configs = {
   emmet_ls = function ()
     return {
       filetypes = {
-        "html", "typescriptreact" , "javascriptreact",
+        "html", "htmldjango", "typescriptreact" , "javascriptreact",
         "css", "sass", "scss", "less", "astro"
       }
     }
-  end
+  end,
 }
 
 M.diagnostic_signs = {
