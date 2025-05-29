@@ -104,7 +104,24 @@ require("lazy").setup({
     { "xiyaowong/nvim-transparent" },
     {
       "folke/snacks.nvim",
-      priority = 1000
+      priority = 1000,
+      opts = {
+        dashboard ={
+          preset = {
+            header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+          },
+          sections = {
+            { section = "header" },
+            { section = "startup" },
+          },
+        }
+      }
     },
     {
       "nvim-lualine/lualine.nvim",
@@ -274,62 +291,61 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
-      config = function()
-        require("neo-tree").setup({
-          popup_border_style = "rounded",
-          enable_git_status = true,
-          enable_diagnostics = true,
-          default_component_configs = {
-            indent = {
-              indent_size = 2,
-              padding = 1,
-              with_markers = true,
-              indent_marker = "│",
-              last_indent_marker = "└",
-              with_expanders = nil,
-              expander_collapsed = "",
-              expander_expanded = "",
-            },
-            icon = {
-              folder_closed = "",
-              folder_open = "",
-              folder_empty = "󰜌",
-            },
+      opts = {
+        popup_border_style = "rounded",
+        enable_git_status = true,
+        enable_diagnostics = true,
+        default_component_configs = {
+          indent = {
+            indent_size = 2,
+            padding = 1,
+            with_markers = true,
+            indent_marker = "│",
+            last_indent_marker = "└",
+            with_expanders = nil,
+            expander_collapsed = "",
+            expander_expanded = "",
           },
-          window = {
-            position = "left",
-            width = 40,
-            mappings = {
-              ["<space>"] = { "toggle_node", nowait = false },
-              ["<cr>"] = "open",
-              ["<esc>"] = "cancel",
-              ["a"] = { "add", config = { show_path = "none" } },
-              ["A"] = "add_directory",
-              ["d"] = "delete",
-              ["r"] = "rename",
-              ["y"] = "copy_to_clipboard",
-              ["x"] = "cut_to_clipboard",
-              ["p"] = "paste_from_clipboard",
-              ["R"] = "refresh",
+          icon = {
+            folder_closed = "",
+            folder_open = "",
+            folder_empty = "󰜌",
+          },
+        },
+        window = {
+          position = "left",
+          width = 40,
+          mappings = {
+            ["<space>"] = { "toggle_node", nowait = false },
+            ["<cr>"] = "open",
+            ["<esc>"] = "cancel",
+            ["a"] = { "add", config = { show_path = "none" } },
+            ["A"] = "add_directory",
+            ["d"] = "delete",
+            ["r"] = "rename",
+            ["y"] = "copy_to_clipboard",
+            ["x"] = "cut_to_clipboard",
+            ["p"] = "paste_from_clipboard",
+            ["R"] = "refresh",
+          },
+          filesystem = {
+            filtered_items = {
+              visible = false,
+              hide_dotfiles = true,
+              hide_gitignored = true,
+              hide_hidden = true
             },
-            filesystem = {
-              filtered_items = {
-                visible = false,
-                hide_dotfiles = true,
-                hide_gitignored = true,
-                hide_hidden = true,
-              },
-              group_empty_dirs = false,
-              hijack_netrw_behavior = "open_default",
-              window = {
-                mappings = {
-                  ["."] = "set_root",
-                  ["H"] = "toggle_hidden",
-                },
-              },
-            },
-          }})
-        end
+            group_empty_dirs = false,
+            hijack_netrw_behavior = "open_default",
+            window = {
+              mappings = {
+                ["."] = "set_root",
+                ["H"] = "toggle_hidden"
+              }
+            }
+          }
+        }
+      }
     },
     {
       "ggandor/leap.nvim",
@@ -343,29 +359,25 @@ require("lazy").setup({
     { "szw/vim-maximizer" },
     {
       "williamboman/mason.nvim",
-      config = function()
-        require("mason").setup({
-          ui = {
-            border = "rounded",
-            backdrop = 100
-          }
-        })
-      end
+      opts = {
+        ui = {
+          border = "rounded",
+          backdrop = 100
+        }
+      }
     },
     {
       "williamboman/mason-lspconfig.nvim",
       dependencies = { "williamboman/mason.nvim" },
-      config = function()
-        require("mason-lspconfig").setup({
-          ensure_installed = {
-            "clangd", "cmake", "rust_analyzer",
-            "pyright", "lua_ls", "marksman",
-            "ts_ls", "html", "cssls", "emmet_ls"
-          },
-          automatic_enable = false,
-          automatic_installation = true
-        })
-      end
+      opts = {
+        ensure_installed = {
+          "clangd", "cmake", "rust_analyzer",
+          "pyright", "lua_ls", "marksman",
+          "ts_ls", "html", "cssls", "emmet_ls"
+        },
+        automatic_enable = false,
+        automatic_installation = true
+      }
     },
     {
       "neovim/nvim-lspconfig",
