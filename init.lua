@@ -550,7 +550,8 @@ require("lazy").setup({
     colorscheme = { "rose-pine-moon" }
   },
   checker = {
-    enabled = true
+    enabled = true,
+    notify = false
   }
 })
 
