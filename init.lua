@@ -36,10 +36,10 @@ vim.opt.ignorecase = true
 -- Disable line wrap
 vim.opt.wrap = false
 
--- Consistent 2 space indentation
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+-- Consistent space indentation
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.breakindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
@@ -63,6 +63,19 @@ vim.o.wildmenu = false
 vim.opt.completeopt = "menu,menuone,noselect"
 
 -- Yank to Clipboard
+vim.g.clipboard = {
+  name = "win32yank",
+  copy = {
+    ["+"] = "win32yank.exe -i --crlf",
+    ["*"] = "win32yank.exe -i --crlf",
+  },
+  paste = {
+    ["+"] = "win32yank.exe -o --lf",
+    ["*"] = "win32yank.exe -o --lf",
+  },
+  cache_enabled = false,
+}
+
 vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" }) -- Windows
 -- vim.opt.clipboard:append({ "unnamedplus" }) -- UNIX
 
@@ -77,6 +90,7 @@ require("lazy").setup({
       priority = 1000,
       config = function()
         vim.g.komau_italic = 0
+
         -- vim.cmd("colorscheme komau")
       end
     },
@@ -97,11 +111,46 @@ require("lazy").setup({
       end
     },
     {
+      "rebelot/kanagawa.nvim",
+      priority = 1000,
+      config = function()
+        require("kanagawa").setup({
+          keywordStyle = { italic = false },
+          transparent = true,
+          theme = "dragon"
+        })
+
+        -- vim.cmd("colorscheme kanagawa")
+      end
+    },
+    {
       "lewis6991/gitsigns.nvim",
       lazy = true,
       event = { "BufReadPre", "BufNewFile" }
     },
     { "xiyaowong/nvim-transparent" },
+    {
+      "mcauley-penney/tidy.nvim",
+      config = true,
+    },
+    {
+      "christoomey/vim-tmux-navigator",
+      cmd = {
+        "TmuxNavigateLeft",
+        "TmuxNavigateDown",
+        "TmuxNavigateUp",
+        "TmuxNavigateRight",
+        "TmuxNavigatePrevious",
+        "TmuxNavigatorProcessList",
+      },
+      keys = {
+        { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+        { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+        { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+        { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+        { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      },
+    },
     {
       "folke/snacks.nvim",
       priority = 1000,
@@ -196,7 +245,7 @@ require("lazy").setup({
       config = function()
         require("nvim-treesitter.configs").setup({
           ensure_installed = {
-            "c", "cpp", "cmake", "rust", "python", "lua",
+            "c", "cpp", "rust", "python", "lua",
             "javascript", "typescript", "html", "css",
             "json", "jsonc", "toml", "yaml", "vim",
             "markdown", "markdown_inline"
@@ -262,6 +311,13 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "nvim-telescope/telescope-file-browser.nvim"
       },
+      keys = {
+        { "<leader>b", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>" },
+        { "<leader>ff", "<cmd>Telescope find_files<cr>" },
+        { "<leader>fd", "<cmd>Telescope diagnostics<cr>" },
+        { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+        { "<leader>fs", "<cmd>Telescope grep_string<cr>" }
+      },
       config = function()
         local telescope = require("telescope")
 
@@ -291,6 +347,9 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
+      keys = {
+        { "<leader>v", "<cmd>Neotree toggle<cr>" }
+      },
       opts = {
         popup_border_style = "rounded",
         enable_git_status = true,
@@ -318,6 +377,7 @@ require("lazy").setup({
           mappings = {
             ["<space>"] = { "toggle_node", nowait = false },
             ["<cr>"] = "open",
+            ["<t>"] = "open_tab_drop",
             ["<esc>"] = "cancel",
             ["a"] = { "add", config = { show_path = "none" } },
             ["A"] = "add_directory",
@@ -371,7 +431,7 @@ require("lazy").setup({
       dependencies = { "williamboman/mason.nvim" },
       opts = {
         ensure_installed = {
-          "clangd", "cmake", "rust_analyzer",
+          "clangd", "rust_analyzer",
           "pyright", "lua_ls", "marksman",
           "ts_ls", "html", "cssls", "emmet_ls"
         },
@@ -388,7 +448,6 @@ require("lazy").setup({
         local lspconfig = require("lspconfig")
         local servers = {
           clangd = {},
-          cmake = {},
           rust_analyzer = {},
           pyright = {
             settings = {
@@ -439,15 +498,15 @@ require("lazy").setup({
             local opts = { buffer = ev.buf, silent = true }
 
             vim.keymap.set("n","gD", vim.lsp.buf.declaration, opts)
-            vim.keymap.set("n","gd", ":Telescope lsp_definitions<CR>", opts)
-            vim.keymap.set("n","gt", ":Telescope lsp_type_definitions<CR>", opts)
-            vim.keymap.set("n","gi", ":Telescope lsp_implementations<CR>", opts)
-            vim.keymap.set("n","gr", ":Telescope lsp_references<CR>", opts)
-            vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
+            vim.keymap.set("n","gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+            vim.keymap.set("n","gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+            vim.keymap.set("n","gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+            vim.keymap.set("n","gr", "<cmd>Telescope lsp_references<cr>", opts)
+            vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
             vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
             vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+            vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<cr>", opts)
           end
         })
 
@@ -566,7 +625,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- Search
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { silent = true })
+vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>", { silent = true })
 
 -- Do not yank when x/X & p/P
 vim.keymap.set("n", "x", '"_x')
@@ -579,39 +638,17 @@ vim.keymap.set("n", "=", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
 
 -- Tab management
-vim.keymap.set("n", "<leader>te", ":tabedit<CR>", { silent = true })
-vim.keymap.set("n", "<leader>h", ":tabmove -<CR>", { silent = true })
-vim.keymap.set("n", "<leader>l", ":tabmove +<CR>", { silent = true })
-vim.keymap.set("n", "<TAB>", ":tabnext<CR>", { silent = true })
-vim.keymap.set("n", "<S-TAB>", ":tabprev<CR>", { silent = true })
+vim.keymap.set("n", "<leader>te", "<cmd>tabedit<cr>", { silent = true })
+vim.keymap.set("n", "<leader>h", "<cmd>tabmove -<cr>", { silent = true })
+vim.keymap.set("n", "<leader>l", "<cmd>tabmove +<cr>", { silent = true })
+vim.keymap.set("n", "<TAB>", "<cmd>tabnext<cr>", { silent = true })
+vim.keymap.set("n", "<S-TAB>", "<cmd>tabprev<cr>", { silent = true })
 
 -- Split screen
 vim.keymap.set("n", "<leader>sv", "<C-w>v<C-w>w")
 vim.keymap.set("n", "<leader>sh", "<C-w>s<C-w>w")
-vim.keymap.set("n", "<leader>sh", "<C-w><")
-vim.keymap.set("n", "<leader>sl", "<C-w>>")
-vim.keymap.set("n", "<leader>sk", "<C-w>+")
-vim.keymap.set("n", "<leader>sj", "<C-w>-")
-vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { silent = true })
-if vim.fn.has "nvim" == 1 then
-  vim.keymap.set("n", "<BS>", "<C-w>h", { silent = true})
-else
-  vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true})
-end
-vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true})
-vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true})
-vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true})
+vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<cr>", { silent = true })
 
 -- Commenting
 vim.keymap.set("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>", { silent = true })
 vim.keymap.set("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { silent = true })
-
--- Telescope
-vim.keymap.set("n", "<leader>b", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
-vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics<CR>", { silent = true })
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { silent = true })
-vim.keymap.set("n", "<leader>fs", ":Telescope grep_string<CR>", { silent = true })
-
--- Neotree
-vim.keymap.set("n", "<leader>v", ":Neotree toggle<CR>", { silent = true })
