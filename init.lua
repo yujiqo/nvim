@@ -37,9 +37,9 @@ vim.opt.ignorecase = true
 vim.opt.wrap = false
 
 -- Consistent space indentation
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.breakindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
@@ -81,6 +81,19 @@ vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" }) -- Windows
 
 -- Leader as <Space>
 vim.g.mapleader = " "
+
+-- Indent commands
+vim.api.nvim_create_user_command("Indent", function(opts)
+  local tabsize = tonumber(opts.args)
+
+  if not tabsize then
+    return
+  end
+
+  vim.opt.tabstop = tabsize
+  vim.opt.softtabstop = tabsize
+  vim.opt.shiftwidth = tabsize
+end, { nargs = 1 })
 
 --------------- Plugins setup ---------------
 require("lazy").setup({
@@ -432,7 +445,7 @@ require("lazy").setup({
       opts = {
         ensure_installed = {
           "clangd", "rust_analyzer",
-          "pyright", "lua_ls", "marksman",
+          "pyright", "lua_ls",
           "ts_ls", "html", "cssls", "emmet_ls"
         },
         automatic_enable = false,
@@ -480,7 +493,7 @@ require("lazy").setup({
           ts_ls = {},
           html = {},
           cssls = {},
-          emmet_ls = {}
+          emmet_ls = {},
         }
 
         for name, opts in pairs(servers) do
