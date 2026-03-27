@@ -63,21 +63,21 @@ vim.o.wildmenu = false
 vim.opt.completeopt = "menu,menuone,noselect"
 
 -- Yank to Clipboard
-vim.g.clipboard = {
-  name = "win32yank",
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf",
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --lf",
-    ["*"] = "win32yank.exe -o --lf",
-  },
-  cache_enabled = false,
-}
+-- vim.g.clipboard = {
+--   name = "win32yank",
+--   copy = {
+--     ["+"] = "win32yank.exe -i --crlf",
+--     ["*"] = "win32yank.exe -i --crlf",
+--   },
+--   paste = {
+--     ["+"] = "win32yank.exe -o --lf",
+--     ["*"] = "win32yank.exe -o --lf",
+--   },
+--   cache_enabled = false,
+-- }
 
-vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" }) -- Windows
--- vim.opt.clipboard:append({ "unnamedplus" }) -- UNIX
+-- vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" }) -- Windows
+vim.opt.clipboard:append({ "unnamedplus" }) -- UNIX
 
 -- Leader as <Space>
 vim.g.mapleader = " "
@@ -94,538 +94,530 @@ vim.api.nvim_create_user_command("Indent", function(opts)
   vim.opt.softtabstop = tabsize
   vim.opt.shiftwidth = tabsize
 end, { nargs = 1 })
-
 --------------- Plugins setup ---------------
-require("lazy").setup({
-  spec = {
-    {
-      "ntk148v/komau.vim",
-      priority = 1000,
-      config = function()
-        vim.g.komau_italic = 0
+if not vim.g.vscode then
+  require("lazy").setup({
+    spec = {
+      {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        priority = 1000,
+        config = function()
+          require("rose-pine").setup({
+            bold_vert_split = false,
+            dim_nc_background = false,
+            disable_background = true,
+            disable_float_background = true,
+            disable_italics = true
+          })
 
-        -- vim.cmd("colorscheme komau")
-      end
-    },
-    {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      priority = 1000,
-      config = function()
-        require("rose-pine").setup({
-          bold_vert_split = false,
-          dim_nc_background = false,
-          disable_background = true,
-          disable_float_background = true,
-          disable_italics = true
-        })
-
-        vim.cmd("colorscheme rose-pine-moon")
-      end
-    },
-    {
-      "rebelot/kanagawa.nvim",
-      priority = 1000,
-      config = function()
-        require("kanagawa").setup({
-          keywordStyle = { italic = false },
-          transparent = true,
-          theme = "dragon"
-        })
-
-        -- vim.cmd("colorscheme kanagawa")
-      end
-    },
-    {
-      "lewis6991/gitsigns.nvim",
-      lazy = true,
-      event = { "BufReadPre", "BufNewFile" }
-    },
-    { "xiyaowong/nvim-transparent" },
-    {
-      "mcauley-penney/tidy.nvim",
-      config = true,
-    },
-    {
-      "christoomey/vim-tmux-navigator",
-      cmd = {
-        "TmuxNavigateLeft",
-        "TmuxNavigateDown",
-        "TmuxNavigateUp",
-        "TmuxNavigateRight",
-        "TmuxNavigatePrevious",
-        "TmuxNavigatorProcessList",
+          vim.cmd("colorscheme rose-pine")
+        end
       },
-      keys = {
-        { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-        { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-        { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-        { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-        { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      {
+        "f-person/auto-dark-mode.nvim",
+        opts = {
+          set_dark_mode = function()
+            vim.api.nvim_set_option_value("background", "dark", {})
+          end,
+          set_light_mode = function()
+            vim.api.nvim_set_option_value("background", "light", {})
+          end,
+          update_interval = 5000,
+          fallback = "dark"
+        }
       },
-    },
-    {
-      "folke/snacks.nvim",
-      priority = 1000,
-      opts = {
-        dashboard ={
-          preset = {
-            header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+      {
+        "lewis6991/gitsigns.nvim",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" }
+      },
+      { "xiyaowong/nvim-transparent" },
+      {
+        "mcauley-penney/tidy.nvim",
+        config = true,
+      },
+      {
+        "christoomey/vim-tmux-navigator",
+        cmd = {
+          "TmuxNavigateLeft",
+          "TmuxNavigateDown",
+          "TmuxNavigateUp",
+          "TmuxNavigateRight",
+          "TmuxNavigatePrevious",
+          "TmuxNavigatorProcessList",
+        },
+        keys = {
+          { "<C-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+          { "<C-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+          { "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+          { "<C-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+          { "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+        },
+      },
+      {
+        "folke/snacks.nvim",
+        priority = 1000,
+        opts = {
+          dashboard ={
+            preset = {
+              header = [[
+  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+            },
+            sections = {
+              { section = "header" },
+              { section = "startup" },
+            },
+          }
+        }
+      },
+      {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+          options = {
+            icons_enabled = true,
+            component_separators = { left = "", right = ""},
+            section_separators = { left = "", right = ""},
+            always_divide_middle = true,
+            always_show_tabline = false,
+            globalstatus = false,
+            refresh = { statusline = 100 }
           },
           sections = {
-            { section = "header" },
-            { section = "startup" },
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {
+              "filename",
+              "diagnostics",
+              "branch",
+              "diff",
+            },
+            lualine_x = {
+              {
+                require("lazy.status").updates,
+                cond = require("lazy.status").has_updates,
+                color = { fg = "#ff9e64" }
+              },
+              "location",
+              "progress"
+            },
+            lualine_y = {},
+            lualine_z = {}
+          },
+          inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = { "filename" },
+            lualine_x = { "location" },
+            lualine_y = {},
+            lualine_z = {}
           },
         }
-      }
-    },
-    {
-      "nvim-lualine/lualine.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {
-        options = {
-          icons_enabled = true,
-          component_separators = { left = "", right = ""},
-          section_separators = { left = "", right = ""},
-          always_divide_middle = true,
-          always_show_tabline = false,
-          globalstatus = false,
-          refresh = { statusline = 100 }
-        },
-        sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {
-            "filename",
-            "diagnostics",
-            "branch",
-            "diff",
-          },
-          lualine_x = {
-            {
-              require("lazy.status").updates,
-              cond = require("lazy.status").has_updates,
-              color = { fg = "#ff9e64" }
+      },
+      {
+        "levouh/tint.nvim",
+        config = function()
+          require("tint").setup({
+            tint = -30, saturatiow = 0.3
+          })
+        end
+      },
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+          require("ibl").setup({
+            indent = { char = "▏", highlight = "LineNr" },
+            scope = { enabled = false }
+          })
+        end
+      },
+      {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
+        build = ":TSUpdate",
+        branch = "master",
+        config = function()
+          require("nvim-treesitter.configs").setup({
+            ensure_installed = {
+              "c", "cpp", "rust", "python", "lua",
+              "javascript", "typescript", "html", "css",
+              "json", "jsonc", "toml", "yaml", "vim",
+              "markdown", "markdown_inline"
             },
-            "location",
-            "progress"
-          },
-          lualine_y = {},
-          lualine_z = {}
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { "filename" },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {}
-        },
-      }
-    },
-    {
-      "levouh/tint.nvim",
-      config = function()
-        require("tint").setup({
-          tint = -30, saturatiow = 0.3
-        })
-      end
-    },
-    {
-      "lukas-reineke/indent-blankline.nvim",
-      main = "ibl",
-      lazy = true,
-      event = { "BufReadPre", "BufNewFile" },
-      config = function()
-        require("ibl").setup({
-          indent = { char = "▏", highlight = "LineNr" },
-          scope = { enabled = false }
-        })
-      end
-    },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      lazy = true,
-      event = { "BufReadPre", "BufNewFile" },
-      build = ":TSUpdate",
-      branch = "master",
-      config = function()
-        require("nvim-treesitter.configs").setup({
-          ensure_installed = {
-            "c", "cpp", "rust", "python", "lua",
-            "javascript", "typescript", "html", "css",
-            "json", "jsonc", "toml", "yaml", "vim",
-            "markdown", "markdown_inline"
-          },
-          highlight = { enable = true },
-          indent = { enable = true }
-        })
-      end
-    },
-    {
-      "numToStr/Comment.nvim",
-      lazy = true,
-      dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-      config = function()
-        require("Comment").setup({
-          pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
-        })
-      end
-    },
-    {
-      "akinsho/bufferline.nvim",
-      lazy = true,
-      keys = "<leader>te",
-      version = "*",
-      dependencies = "nvim-tree/nvim-web-devicons",
-      config = function()
-        local regular = { fg = "#858585", bg = "none" }
-        local selected = { fg = "#cccccc", bg = "none" }
-
-        require("bufferline").setup({
-          highlights = {
-            fill = regular,
-            background = regular,
-            tab = regular,
-            numbers = regular,
-            tab_selected = selected,
-            numbers_selected = selected
-          },
-          options = {
-            mode = "tabs",
-            numbers = "none",
-            modified_icon = "+",
-            tab_size = 8,
-            diagnostics = "nvim_lsp",
-            show_buffer_icons = true,
-            show_close_icon = false,
-            show_tab_indicators = true,
-            show_duplicate_prefix = true,
-            separator_style = { "", "" },
-            always_show_bufferline = false,
-            indicator = { style = "none" },
-            over = { enabled = false }
-          }
-        })
-      end
-    },
-    {
-      "nvim-telescope/telescope.nvim",
-      lazy = true,
-      event = "VeryLazy",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "nvim-telescope/telescope-file-browser.nvim"
+            highlight = { enable = true },
+            indent = { enable = true }
+          })
+        end
       },
-      keys = {
-        { "<leader>b", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>" },
-        { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-        { "<leader>fd", "<cmd>Telescope diagnostics<cr>" },
-        { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-        { "<leader>fs", "<cmd>Telescope grep_string<cr>" }
+      {
+        "numToStr/Comment.nvim",
+        lazy = true,
+        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+        config = function()
+          require("Comment").setup({
+            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+          })
+        end
       },
-      config = function()
-        local telescope = require("telescope")
+      {
+        "akinsho/bufferline.nvim",
+        lazy = true,
+        keys = "<leader>te",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+          local regular = { fg = "#858585", bg = "none" }
+          local selected = { fg = "#cccccc", bg = "none" }
 
-        telescope.setup({
-          defaults = {
-            prompt_prefix = "   ", selection_caret = " ",
-            sorting_strategy = "ascending",
-            layout_config = { prompt_position = "top" }
-          },
-          extensions = {
-            file_browser = {
-              hijack_netrw = false,
-              git_status = false
+          require("bufferline").setup({
+            highlights = {
+              fill = regular,
+              background = regular,
+              tab = regular,
+              numbers = regular,
+              tab_selected = selected,
+              numbers_selected = selected
+            },
+            options = {
+              mode = "tabs",
+              numbers = "none",
+              modified_icon = "+",
+              tab_size = 8,
+              diagnostics = "nvim_lsp",
+              show_buffer_icons = true,
+              show_close_icon = false,
+              show_tab_indicators = true,
+              show_duplicate_prefix = true,
+              separator_style = { "", "" },
+              always_show_bufferline = false,
+              indicator = { style = "none" },
+              over = { enabled = false }
             }
-          }
-        })
-
-        telescope.load_extension("file_browser")
-      end
-    },
-    {
-      "nvim-neo-tree/neo-tree.nvim",
-      lazy = false,
-      branch = "v3.x",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
+          })
+        end
       },
-      keys = {
-        { "<leader>v", "<cmd>Neotree toggle<cr>" }
-      },
-      opts = {
-        popup_border_style = "rounded",
-        enable_git_status = true,
-        enable_diagnostics = true,
-        default_component_configs = {
-          indent = {
-            indent_size = 2,
-            padding = 1,
-            with_markers = true,
-            indent_marker = "│",
-            last_indent_marker = "└",
-            with_expanders = nil,
-            expander_collapsed = "",
-            expander_expanded = "",
-          },
-          icon = {
-            folder_closed = "",
-            folder_open = "",
-            folder_empty = "󰜌",
-          },
+      {
+        "nvim-telescope/telescope.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons",
+          "nvim-telescope/telescope-file-browser.nvim"
         },
-        window = {
-          position = "left",
-          width = 40,
-          mappings = {
-            ["<space>"] = { "toggle_node", nowait = false },
-            ["<cr>"] = "open",
-            ["<t>"] = "open_tab_drop",
-            ["<esc>"] = "cancel",
-            ["a"] = { "add", config = { show_path = "none" } },
-            ["A"] = "add_directory",
-            ["d"] = "delete",
-            ["r"] = "rename",
-            ["y"] = "copy_to_clipboard",
-            ["x"] = "cut_to_clipboard",
-            ["p"] = "paste_from_clipboard",
-            ["R"] = "refresh",
-          },
-          filesystem = {
-            filtered_items = {
-              visible = false,
-              hide_dotfiles = true,
-              hide_gitignored = true,
-              hide_hidden = true
+        keys = {
+          { "<leader>b", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>" },
+          { "<leader>ff", "<cmd>Telescope find_files<cr>" },
+          { "<leader>fd", "<cmd>Telescope diagnostics<cr>" },
+          { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+          { "<leader>fs", "<cmd>Telescope grep_string<cr>" }
+        },
+        config = function()
+          local telescope = require("telescope")
+
+          telescope.setup({
+            defaults = {
+              prompt_prefix = "   ", selection_caret = " ",
+              sorting_strategy = "ascending",
+              layout_config = { prompt_position = "top" }
             },
-            group_empty_dirs = false,
-            hijack_netrw_behavior = "open_default",
-            window = {
-              mappings = {
-                ["."] = "set_root",
-                ["H"] = "toggle_hidden"
+            extensions = {
+              file_browser = {
+                hijack_netrw = false,
+                git_status = false
               }
             }
-          }
-        }
-      }
-    },
-    {
-      "ggandor/leap.nvim",
-      lazy = true,
-      keys = "s",
-      dependencies = { "tpope/vim-repeat" },
-      config = function()
-        require("leap").set_default_mappings()
-      end
-    },
-    { "szw/vim-maximizer" },
-    {
-      "williamboman/mason.nvim",
-      opts = {
-        ui = {
-          border = "rounded",
-          backdrop = 100
-        }
-      }
-    },
-    {
-      "williamboman/mason-lspconfig.nvim",
-      dependencies = { "williamboman/mason.nvim" },
-      opts = {
-        ensure_installed = {
-          "clangd", "rust_analyzer",
-          "pyright", "lua_ls",
-          "ts_ls", "html", "cssls", "emmet_ls"
+          })
+
+          telescope.load_extension("file_browser")
+        end
+      },
+      {
+        "nvim-neo-tree/neo-tree.nvim",
+        lazy = false,
+        branch = "v3.x",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons",
+          "MunifTanjim/nui.nvim",
         },
-        automatic_enable = false,
-        automatic_installation = true
-      }
-    },
-    {
-      "neovim/nvim-lspconfig",
-      lazy = true,
-      event = { "BufReadPre", "BufNewFile" },
-      dependencies = { "williamboman/mason-lspconfig.nvim" },
-      config = function()
-        local lspconfig = require("lspconfig")
-        local servers = {
-          clangd = {},
-          rust_analyzer = {},
-          pyright = {
-            settings = {
-              python = {
-                analysis = {
-                  typeCheckingMode = "off"
+        keys = {
+          { "<leader>v", "<cmd>Neotree toggle<cr>" }
+        },
+        opts = {
+          popup_border_style = "rounded",
+          enable_git_status = true,
+          enable_diagnostics = true,
+          default_component_configs = {
+            indent = {
+              indent_size = 2,
+              padding = 1,
+              with_markers = true,
+              indent_marker = "│",
+              last_indent_marker = "└",
+              with_expanders = nil,
+              expander_collapsed = "",
+              expander_expanded = "",
+            },
+            icon = {
+              folder_closed = "",
+              folder_open = "",
+              folder_empty = "󰜌",
+            },
+          },
+          window = {
+            position = "left",
+            width = 40,
+            mappings = {
+              ["<space>"] = { "toggle_node", nowait = false },
+              ["<cr>"] = "open",
+              ["<t>"] = "open_tab_drop",
+              ["<esc>"] = "cancel",
+              ["a"] = { "add", config = { show_path = "none" } },
+              ["A"] = "add_directory",
+              ["d"] = "delete",
+              ["r"] = "rename",
+              ["y"] = "copy_to_clipboard",
+              ["x"] = "cut_to_clipboard",
+              ["p"] = "paste_from_clipboard",
+              ["R"] = "refresh",
+            },
+            filesystem = {
+              filtered_items = {
+                visible = false,
+                hide_dotfiles = true,
+                hide_gitignored = true,
+                hide_hidden = true
+              },
+              group_empty_dirs = false,
+              hijack_netrw_behavior = "open_default",
+              window = {
+                mappings = {
+                  ["."] = "set_root",
+                  ["H"] = "toggle_hidden"
                 }
               }
             }
+          }
+        }
+      },
+      {
+        "ggandor/leap.nvim",
+        lazy = true,
+        keys = "s",
+        dependencies = { "tpope/vim-repeat" },
+        config = function()
+          require("leap").set_default_mappings()
+        end
+      },
+      { "szw/vim-maximizer" },
+      {
+        "williamboman/mason.nvim",
+        opts = {
+          ui = {
+            border = "rounded",
+            backdrop = 100
+          }
+        }
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        opts = {
+          ensure_installed = {
+            "clangd", "rust_analyzer",
+            "pyright", "lua_ls",
+            "ts_ls", "html", "cssls", "emmet_ls"
           },
-          lua_ls = {
-            settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT",
-                },
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                workspace = {
-                  library = vim.api.nvim_get_runtime_file("", true),
-                },
-                telemetry = {
-                  enable = false,
+          automatic_enable = false,
+          automatic_installation = true
+        }
+      },
+      {
+        "neovim/nvim-lspconfig",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
+        config = function()
+          local lspconfig = require("lspconfig")
+          local servers = {
+            clangd = {},
+            rust_analyzer = {},
+            pyright = {
+              settings = {
+                python = {
+                  analysis = {
+                    typeCheckingMode = "off"
+                  }
+                }
+              }
+            },
+            lua_ls = {
+              settings = {
+                Lua = {
+                  runtime = {
+                    version = "LuaJIT",
+                  },
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
+                  workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                  },
+                  telemetry = {
+                    enable = false,
+                  },
                 },
               },
             },
-          },
-          marksman = {},
-          ts_ls = {},
-          html = {},
-          cssls = {},
-          emmet_ls = {},
-        }
-
-        for name, opts in pairs(servers) do
-          lspconfig[name].setup(opts)
-        end
-
-        local lsp_defaults = require("lspconfig").util.default_config
-
-        lsp_defaults.capabilities = vim.tbl_deep_extend(
-          "force", lsp_defaults.capabilities, require "cmp_nvim_lsp".default_capabilities())
-
-        vim.api.nvim_create_autocmd("LspAttach", {
-          group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-          callback = function(ev)
-            local opts = { buffer = ev.buf, silent = true }
-
-            vim.keymap.set("n","gD", vim.lsp.buf.declaration, opts)
-            vim.keymap.set("n","gd", "<cmd>Telescope lsp_definitions<cr>", opts)
-            vim.keymap.set("n","gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
-            vim.keymap.set("n","gi", "<cmd>Telescope lsp_implementations<cr>", opts)
-            vim.keymap.set("n","gr", "<cmd>Telescope lsp_references<cr>", opts)
-            vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
-            vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<cr>", opts)
-          end
-        })
-
-        require("lspconfig.ui.windows").default_options = { border = "rounded" }
-
-        vim.diagnostic.config({
-          virtual_text = true,
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = " ",
-              [vim.diagnostic.severity.WARN] = " ",
-              [vim.diagnostic.severity.HINT] = "󱧢 ",
-              [vim.diagnostic.severity.INFO] = " ",
-            }
-          },
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
-          float = { border = "rounded" }
-        })
-      end
-    },
-    {
-      "hrsh7th/nvim-cmp",
-      lazy = true,
-      event = { "InsertEnter", "CmdlineEnter" },
-      dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "L3MON4D3/LuaSnip"
-      },
-      config = function()
-        local cmp = require("cmp")
-        local kind_icons = {
-          Text = " ", Method = " ", Function = " ", Constructor = " ", Field = " ",
-          Variable = " ", Class = " ", Interface = " ", Module = " ", Property = " ",
-          Unit = " ", Value = " ", Enum = " ", Keyword = " ", Snippet = " ",
-          Color = " ", File = " ", Reference = " ", Folder = " ", EnumMember = " ",
-          Constant = " ", Struct = " ", Event = " ", Operator = " ", TypeParameter = " "
-        }
-
-        cmp.setup({
-          completion = { autocomplete = false },
-          formatting = {
-            fields = { "kind", "abbr", "menu" },
-            format = function(_, item)
-              item.kind = kind_icons[item.kind] or " "
-              item.menu = "  "
-              return item
-            end
-          },
-          window = {
-            completion = { border = "rounded" },
-            documentation = { border = "rounded" }
-          },
-          mapping = cmp.mapping.preset.insert({
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-            ["<CR>"] = cmp.mapping.confirm({ select = true })
-          }),
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "path" },
-            { name = "buffer" },
-            { name = "luasnip" }
-          },
-          snippet = {
-            expand = function(args)
-              require("luasnip").lsp_expand(args.body)
-            end,
-          },
-        })
-
-        cmp.setup.cmdline(":", {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = cmp.config.sources(
-            { { name = "path" } },
-            { { name = "cmdline" } }
-          )
-        })
-
-        cmp.setup.cmdline({ "/", "?" }, {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = {
-            { name = "buffer" }
+            marksman = {},
+            ts_ls = {},
+            html = {},
+            cssls = {},
+            emmet_ls = {},
           }
-        })
-      end
+
+          for name, opts in pairs(servers) do
+            lspconfig[name].setup(opts)
+          end
+
+          local lsp_defaults = require("lspconfig").util.default_config
+
+          lsp_defaults.capabilities = vim.tbl_deep_extend(
+            "force", lsp_defaults.capabilities, require "cmp_nvim_lsp".default_capabilities())
+
+          vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+            callback = function(ev)
+              local opts = { buffer = ev.buf, silent = true }
+
+              vim.keymap.set("n","gD", vim.lsp.buf.declaration, opts)
+              vim.keymap.set("n","gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+              vim.keymap.set("n","gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+              vim.keymap.set("n","gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+              vim.keymap.set("n","gr", "<cmd>Telescope lsp_references<cr>", opts)
+              vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
+              vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+              vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+              vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+              vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<cr>", opts)
+            end
+          })
+
+          require("lspconfig.ui.windows").default_options = { border = "rounded" }
+
+          vim.diagnostic.config({
+            virtual_text = true,
+            signs = {
+              text = {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN] = " ",
+                [vim.diagnostic.severity.HINT] = "󱧢 ",
+                [vim.diagnostic.severity.INFO] = " ",
+              }
+            },
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
+            float = { border = "rounded" }
+          })
+        end
+      },
+      {
+        "hrsh7th/nvim-cmp",
+        lazy = true,
+        event = { "InsertEnter", "CmdlineEnter" },
+        dependencies = {
+          "hrsh7th/cmp-nvim-lsp",
+          "hrsh7th/cmp-buffer",
+          "hrsh7th/cmp-path",
+          "hrsh7th/cmp-cmdline",
+          "L3MON4D3/LuaSnip"
+        },
+        config = function()
+          local cmp = require("cmp")
+          local kind_icons = {
+            Text = " ", Method = " ", Function = " ", Constructor = " ", Field = " ",
+            Variable = " ", Class = " ", Interface = " ", Module = " ", Property = " ",
+            Unit = " ", Value = " ", Enum = " ", Keyword = " ", Snippet = " ",
+            Color = " ", File = " ", Reference = " ", Folder = " ", EnumMember = " ",
+            Constant = " ", Struct = " ", Event = " ", Operator = " ", TypeParameter = " "
+          }
+
+          cmp.setup({
+            completion = { autocomplete = false },
+            formatting = {
+              fields = { "kind", "abbr", "menu" },
+              format = function(_, item)
+                item.kind = kind_icons[item.kind] or " "
+                item.menu = "  "
+                return item
+              end
+            },
+            window = {
+              completion = { border = "rounded" },
+              documentation = { border = "rounded" }
+            },
+            mapping = cmp.mapping.preset.insert({
+              ["<Tab>"] = cmp.mapping.select_next_item(),
+              ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+              ["<C-e>"] = cmp.mapping.abort(),
+              ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+              ["<CR>"] = cmp.mapping.confirm({ select = true })
+            }),
+            sources = {
+              { name = "nvim_lsp" },
+              { name = "path" },
+              { name = "buffer" },
+              { name = "luasnip" }
+            },
+            snippet = {
+              expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+              end,
+            },
+          })
+
+          cmp.setup.cmdline(":", {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources(
+              { { name = "path" } },
+              { { name = "cmdline" } }
+            )
+          })
+
+          cmp.setup.cmdline({ "/", "?" }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+              { name = "buffer" }
+            }
+          })
+        end
+      }
+    },
+    ui = {
+      backdrop = 100,
+      border = "rounded"
+    },
+    install = {
+      colorscheme = { "rose-pine-moon" }
+    },
+    checker = {
+      enabled = true,
+      notify = false
     }
-  },
-  ui = {
-    backdrop = 100,
-    border = "rounded"
-  },
-  install = {
-    colorscheme = { "rose-pine-moon" }
-  },
-  checker = {
-    enabled = true,
-    notify = false
-  }
-})
+  })
+end
 
 --------------- Keymaps ---------------
 -- Select all
